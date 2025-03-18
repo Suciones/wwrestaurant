@@ -1,0 +1,10 @@
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.exe.config
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.exe
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.pdb
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.AssemblyReference.cache
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1.resources
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Properties.Resources.resources
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.GenerateResource.cache
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.CoreCompileInputs.cache
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
