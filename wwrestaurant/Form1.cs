@@ -42,5 +42,30 @@ namespace wwrestaurant
         {
 
         }
+
+        private void login_button_Click(object sender, EventArgs e)
+        {
+            if (username.Text.Equals("admin") && password.Text.Equals("admin"))
+            {
+                this.Hide();
+                Menu menuform = new Menu();
+                menuform.ShowDialog();
+            }
+            else
+            {
+                errorlabel.Text = "Incorrect username or password";
+            }
+                
+        }
+
+        private void username_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            errorlabel.Text = "";
+        }
+
+        private void password_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            errorlabel.Text = "";
+        }
     }
 }

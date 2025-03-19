@@ -8,3 +8,4 @@ D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.CoreCompileInputs.cache
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Menu.resources
