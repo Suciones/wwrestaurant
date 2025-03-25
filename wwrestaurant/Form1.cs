@@ -26,6 +26,8 @@ namespace wwrestaurant
 
             // Set the start position of the form to the center of the screen.
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
