@@ -39,13 +39,7 @@ namespace wwrestaurant
 
 
 
-<<<<<<< HEAD
-            /*panel6.
-            panel6.AutoScroll = true;*/
-            
-            
-=======
->>>>>>> 46e16ace6a6f74c619f328e96dfa95b15f7da51f
+
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
@@ -61,6 +55,12 @@ namespace wwrestaurant
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form_table form1= new Form_table();
+            form1.ShowDialog();
         }
     }
 }
