@@ -26,13 +26,19 @@ namespace wwrestaurant
 
             // Set the start position of the form to the center of the screen.
             this.StartPosition = FormStartPosition.CenterScreen;
-            panel5.Dock = DockStyle.Top;
-            //panel6.Dock = DockStyle.Fill;
+            
+            menu_panel.Dock = DockStyle.Top;
+            Panel panel_scroll = new Panel();
+            panel_scroll.Controls.Add(panel_item1);
+            panel_scroll.Controls.Add(panel_item2);
+            panel_scroll.Controls.Add(panel_item3);
+            panel_scroll.Controls.Add(panel_item4);
+            panel_scroll.Dock = DockStyle.Fill;
+            panel_scroll.AutoScroll = true;
 
-            panel6.
-            panel6.AutoScroll = true;
-            
-            
+
+
+
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
