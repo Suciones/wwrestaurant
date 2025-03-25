@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,13 +49,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.menu_panel = new System.Windows.Forms.Panel();
+            this.panel_item1 = new System.Windows.Forms.Panel();
+            this.panel_item2 = new System.Windows.Forms.Panel();
+            this.panel_item3 = new System.Windows.Forms.Panel();
+            this.panel_item4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -78,16 +80,6 @@
             this.label1.Size = new System.Drawing.Size(80, 40);
             this.label1.TabIndex = 1;
             this.label1.Text = "Sushi";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Sitka Display Semibold", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(388, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 53);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Menu";
             // 
             // label3
             // 
@@ -273,28 +265,58 @@
             this.pictureBox4.TabIndex = 16;
             this.pictureBox4.TabStop = false;
             // 
-            // panel5
+            // label2
             // 
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Location = new System.Drawing.Point(10, 11);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(854, 90);
-            this.panel5.TabIndex = 21;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Sitka Display Semibold", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(387, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 53);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Menu";
             // 
-            // panel6
+            // menu_panel
             // 
-            this.panel6.Location = new System.Drawing.Point(10, 108);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(854, 719);
-            this.panel6.TabIndex = 22;
+            this.menu_panel.Location = new System.Drawing.Point(-4, -3);
+            this.menu_panel.Name = "menu_panel";
+            this.menu_panel.Size = new System.Drawing.Size(889, 103);
+            this.menu_panel.TabIndex = 21;
+            // 
+            // panel_item1
+            // 
+            this.panel_item1.Location = new System.Drawing.Point(31, 128);
+            this.panel_item1.Name = "panel_item1";
+            this.panel_item1.Size = new System.Drawing.Size(816, 165);
+            this.panel_item1.TabIndex = 22;
+            // 
+            // panel_item2
+            // 
+            this.panel_item2.Location = new System.Drawing.Point(29, 300);
+            this.panel_item2.Name = "panel_item2";
+            this.panel_item2.Size = new System.Drawing.Size(818, 160);
+            this.panel_item2.TabIndex = 23;
+            // 
+            // panel_item3
+            // 
+            this.panel_item3.Location = new System.Drawing.Point(29, 467);
+            this.panel_item3.Name = "panel_item3";
+            this.panel_item3.Size = new System.Drawing.Size(818, 165);
+            this.panel_item3.TabIndex = 24;
+            // 
+            // panel_item4
+            // 
+            this.panel_item4.Location = new System.Drawing.Point(29, 645);
+            this.panel_item4.Name = "panel_item4";
+            this.panel_item4.Size = new System.Drawing.Size(818, 162);
+            this.panel_item4.TabIndex = 25;
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(881, 839);
-            this.Controls.Add(this.panel5);
+            this.ClientSize = new System.Drawing.Size(881, 490);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label8);
@@ -315,7 +337,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.menu_panel);
+            this.Controls.Add(this.panel_item1);
+            this.Controls.Add(this.panel_item2);
+            this.Controls.Add(this.panel_item3);
+            this.Controls.Add(this.panel_item4);
             this.Name = "Menu";
             this.Text = "Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Menu_FormClosed);
@@ -324,8 +350,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,7 +358,6 @@
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
@@ -353,7 +376,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel menu_panel;
+        private System.Windows.Forms.Panel panel_item1;
+        private System.Windows.Forms.Panel panel_item2;
+        private System.Windows.Forms.Panel panel_item3;
+        private System.Windows.Forms.Panel panel_item4;
     }
 }
