@@ -9,3 +9,16 @@ D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Menu.resources
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1.resources
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Menu.resources
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Properties.Resources.resources
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.GenerateResource.cache
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.exe.config
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.exe
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.pdb
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form_table.resources

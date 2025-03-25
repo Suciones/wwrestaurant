@@ -29,8 +29,8 @@ namespace wwrestaurant
             panel5.Dock = DockStyle.Top;
             //panel6.Dock = DockStyle.Fill;
 
-            panel6.
-            panel6.AutoScroll = true;
+            /*panel6.
+            panel6.AutoScroll = true;*/
             
             
         }
