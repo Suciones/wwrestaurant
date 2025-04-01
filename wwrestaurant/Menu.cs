@@ -51,16 +51,19 @@ namespace wwrestaurant
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        
+
+        private void button5_Click_1(object sender, EventArgs e)
         {
-            Form1_menu_table form1_menu_table= new Form1_menu_table();
+            Form1_menu_table form1_menu_table = new Form1_menu_table();
             form1_menu_table.ShowDialog();
+
         }
 
         private void btnManager_Click(object sender, EventArgs e)
         {
-            
-
+            Form1_manager form1_manager = new Form1_manager();
+            form1_manager.ShowDialog();
         }
     }
 }

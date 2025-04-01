@@ -54,6 +54,8 @@
             this.panel_item2 = new System.Windows.Forms.Panel();
             this.panel_item3 = new System.Windows.Forms.Panel();
             this.panel_item4 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnManager = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -302,12 +304,34 @@
             this.panel_item4.Size = new System.Drawing.Size(818, 162);
             this.panel_item4.TabIndex = 25;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(629, 42);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 26;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // btnManager
+            // 
+            this.btnManager.Location = new System.Drawing.Point(736, 42);
+            this.btnManager.Name = "btnManager";
+            this.btnManager.Size = new System.Drawing.Size(75, 23);
+            this.btnManager.TabIndex = 27;
+            this.btnManager.Text = "Manager";
+            this.btnManager.UseVisualStyleBackColor = true;
+            this.btnManager.Click += new System.EventHandler(this.btnManager_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(881, 490);
+            this.Controls.Add(this.btnManager);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel4);
@@ -372,5 +396,7 @@
         private System.Windows.Forms.Panel panel_item2;
         private System.Windows.Forms.Panel panel_item3;
         private System.Windows.Forms.Panel panel_item4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnManager;
     }
 }
