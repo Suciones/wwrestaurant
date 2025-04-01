@@ -50,18 +50,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.menu_panel = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel_item1 = new System.Windows.Forms.Panel();
             this.panel_item2 = new System.Windows.Forms.Panel();
             this.panel_item3 = new System.Windows.Forms.Panel();
             this.panel_item4 = new System.Windows.Forms.Panel();
-            this.btnManager = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.menu_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -278,25 +274,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Menu";
             // 
-            // menu_panel
-            // 
-            this.menu_panel.Controls.Add(this.btnManager);
-            this.menu_panel.Controls.Add(this.button5);
-            this.menu_panel.Location = new System.Drawing.Point(-4, -3);
-            this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(889, 103);
-            this.menu_panel.TabIndex = 21;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(657, 45);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // panel_item1
             // 
             this.panel_item1.Location = new System.Drawing.Point(31, 128);
@@ -325,16 +302,6 @@
             this.panel_item4.Size = new System.Drawing.Size(818, 162);
             this.panel_item4.TabIndex = 25;
             // 
-            // btnManager
-            // 
-            this.btnManager.Location = new System.Drawing.Point(751, 46);
-            this.btnManager.Name = "btnManager";
-            this.btnManager.Size = new System.Drawing.Size(100, 23);
-            this.btnManager.TabIndex = 1;
-            this.btnManager.Text = "MANAGER";
-            this.btnManager.UseVisualStyleBackColor = true;
-            this.btnManager.Click += new System.EventHandler(this.btnManager_Click);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -362,7 +329,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.menu_panel);
             this.Controls.Add(this.panel_item1);
             this.Controls.Add(this.panel_item2);
             this.Controls.Add(this.panel_item3);
@@ -375,7 +341,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.menu_panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,12 +368,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel menu_panel;
         private System.Windows.Forms.Panel panel_item1;
         private System.Windows.Forms.Panel panel_item2;
         private System.Windows.Forms.Panel panel_item3;
         private System.Windows.Forms.Panel panel_item4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button btnManager;
     }
 }
