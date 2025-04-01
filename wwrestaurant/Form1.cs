@@ -26,13 +26,14 @@ namespace wwrestaurant
 
             // Set the start position of the form to the center of the screen.
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.ActiveControl = username;
 
             
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            username.Focus();
         }
 
         private void title_Click(object sender, EventArgs e)
@@ -68,6 +69,32 @@ namespace wwrestaurant
         private void password_KeyPress(object sender, KeyPressEventArgs e)
         {
             errorlabel.Text = "";
+        }
+
+        private void username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Move focus to textBox2
+                password.Focus();
+
+                // Mark the event as handled to prevent the "ding" sound
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Move focus to textBox2
+                login_button_Click(this, new EventArgs());
+
+                // Mark the event as handled to prevent the "ding" sound
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

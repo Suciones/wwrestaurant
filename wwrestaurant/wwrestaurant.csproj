@@ -70,12 +70,6 @@
     <Compile Include="Form2_tables.Designer.cs">
       <DependentUpon>Form2_tables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Manager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Manager.Designer.cs">
-      <DependentUpon>Form_Manager.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +89,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2_tables.resx">
       <DependentUpon>Form2_tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Manager.resx">
-      <DependentUpon>Form_Manager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

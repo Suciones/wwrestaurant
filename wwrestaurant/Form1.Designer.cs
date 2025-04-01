@@ -54,6 +54,7 @@
             this.username.Size = new System.Drawing.Size(326, 37);
             this.username.TabIndex = 0;
             this.username.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.username.KeyDown += new System.Windows.Forms.KeyEventHandler(this.username_KeyDown);
             this.username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.username_KeyPress);
             // 
             // login_button
@@ -94,6 +95,7 @@
             this.password.TabIndex = 0;
             this.password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.password.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.password_KeyDown);
             this.password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.password_KeyPress);
             // 
             // panel2

@@ -25,3 +25,6 @@ C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form2_tables.resources
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_manager.resources
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form_Manager.resources
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_manager.resources
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_menu_table.resources
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form2_tables.resources
