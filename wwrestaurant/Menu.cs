@@ -59,8 +59,15 @@ namespace wwrestaurant
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form_table form1= new Form_table();
-            form1.ShowDialog();
+            Form1_menu_table form1_menu_table= new Form1_menu_table();
+            form1_menu_table.ShowDialog();
+        }
+
+        private void btnManager_Click(object sender, EventArgs e)
+        {
+            Form_Manager form_manager = new Form_Manager();
+            form_manager.ShowDialog();
+
         }
     }
 }

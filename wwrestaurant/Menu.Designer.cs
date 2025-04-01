@@ -51,11 +51,12 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.menu_panel = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel_item1 = new System.Windows.Forms.Panel();
             this.panel_item2 = new System.Windows.Forms.Panel();
             this.panel_item3 = new System.Windows.Forms.Panel();
             this.panel_item4 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnManager = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -279,11 +280,22 @@
             // 
             // menu_panel
             // 
+            this.menu_panel.Controls.Add(this.btnManager);
             this.menu_panel.Controls.Add(this.button5);
             this.menu_panel.Location = new System.Drawing.Point(-4, -3);
             this.menu_panel.Name = "menu_panel";
             this.menu_panel.Size = new System.Drawing.Size(889, 103);
             this.menu_panel.TabIndex = 21;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(657, 45);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel_item1
             // 
@@ -313,15 +325,15 @@
             this.panel_item4.Size = new System.Drawing.Size(818, 162);
             this.panel_item4.TabIndex = 25;
             // 
-            // button5
+            // btnManager
             // 
-            this.button5.Location = new System.Drawing.Point(657, 45);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnManager.Location = new System.Drawing.Point(751, 46);
+            this.btnManager.Name = "btnManager";
+            this.btnManager.Size = new System.Drawing.Size(100, 23);
+            this.btnManager.TabIndex = 1;
+            this.btnManager.Text = "MANAGER";
+            this.btnManager.UseVisualStyleBackColor = true;
+            this.btnManager.Click += new System.EventHandler(this.btnManager_Click);
             // 
             // Menu
             // 
@@ -397,5 +409,6 @@
         private System.Windows.Forms.Panel panel_item3;
         private System.Windows.Forms.Panel panel_item4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnManager;
     }
 }
