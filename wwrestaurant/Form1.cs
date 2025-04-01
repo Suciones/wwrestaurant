@@ -96,5 +96,9 @@ namespace wwrestaurant
                 e.SuppressKeyPress = true;
             }
         }
+
+        private void checkLogin() {
+            
+        }
     }
 }
