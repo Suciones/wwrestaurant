@@ -4,17 +4,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Runtime.Remoting.Contexts;
 
 namespace wwrestaurant
 {
     public partial class Form1 : Form
     {
+        SqlConnection myConn = new SqlConnection();
+        DataSet users;
         public Form1()
         {
             InitializeComponent();
+
+            myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
+
+            myConn.Open();
+            users = new DataSet();
+            SqlDataAdapter usersAdapter = new SqlDataAdapter("SELECT *  FROM users", myConn);
+            usersAdapter.Fill(users, "users");
+
+            foreach(DataRow dr in users.Tables["users"].Rows) {
+                Console.WriteLine(dr["username"]);
+            }
+
             // Define the border style of the form to a dialog box.
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
