@@ -65,5 +65,7 @@ namespace wwrestaurant
             Form1_manager form1_manager = new Form1_manager();
             form1_manager.ShowDialog();
         }
+
+       
     }
 }
