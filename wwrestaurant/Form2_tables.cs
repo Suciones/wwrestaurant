@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace wwrestaurant
 {
     public partial class Form2_tables : Form
     {
+        SqlConnection myCon = new SqlConnection();
+
+        DataSet tablenr = new DataSet();
+
         private enum TableStatus { Free, Reserved, Occupied }
 
         private TableStatus[] tableStatuses = new TableStatus[9]; // 9 tables
@@ -22,6 +27,8 @@ namespace wwrestaurant
         private string mode;
 
         private int? lastSelectedIndex = null;
+
+        
 
         public Form2_tables(string mode)
         {
@@ -64,67 +71,7 @@ namespace wwrestaurant
                 indicatorPanels[i].Region = new Region(gp);
             }
 
-            //// Table layout for 3x3 grid
-            //TableLayoutPanel tableLayout = new TableLayoutPanel();
-            //tableLayout.RowCount = 3;
-            //tableLayout.ColumnCount = 3;
-            //tableLayout.Size = new Size(600, 300);
-            //tableLayout.Location = new Point(20, 80);
-
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
-            //    tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33f));
-            //}
-
-            //this.Controls.Add(tableLayout);
-
-            //// Fill the grid with 9 panels
-            //for (int i = 0; i < 9; i++)
-            //{
-            //    Panel cellPanel = new Panel();
-            //    cellPanel.Dock = DockStyle.Fill;
-            //    cellPanel.Margin = new Padding(10);
-
-            //    // ===== Status circle =====
-            //    Panel circle = new Panel();
-            //    circle.Size = new Size(30, 30);
-            //    circle.BackColor = Color.Green; // ✅ Default to FREE
-            //    circle.Location = new Point(35, 10);
-            //    circle.Paint += (s, e) => {
-            //        // Make the circle round
-            //        Panel p = s as Panel;
-            //        System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            //        path.AddEllipse(0, 0, p.Width, p.Height);
-            //        p.Region = new Region(path);
-            //    };
-
-            //    indicatorPanels[i] = circle; // ✅ store for future access
-
-            //    // ===== Table number =====
-            //    Label lblTable = new Label();
-            //    lblTable.Text = $"Table {i + 1}";
-            //    lblTable.Location = new Point(25, 50);
-            //    lblTable.AutoSize = true;
-
-            //    // ===== Seats =====
-            //    Label lblSeats = new Label();
-            //    lblSeats.Text = "Seats: 4"; // optional: randomize
-            //    lblSeats.Location = new Point(25, 70);
-            //    lblSeats.AutoSize = true;
-
-            //    // Add everything to cell
-            //    cellPanel.Controls.Add(circle);
-            //    cellPanel.Controls.Add(lblTable);
-            //    cellPanel.Controls.Add(lblSeats);
-
-            //    // Add to grid
-            //    tableLayout.Controls.Add(cellPanel);
-
-            //    // Initialize status
-            //    tableStatuses[i] = TableStatus.Free;
-            //}
-
+           
         }
 
         private void Form2_tables_Load(object sender, EventArgs e)

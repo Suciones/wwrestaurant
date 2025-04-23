@@ -20,8 +20,9 @@ namespace wwrestaurant
         public Form1()
         {
             InitializeComponent();
-
-            myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
+            // nu merge baza de date ca e file ul din folderul lui razvan 
+            //myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
+            myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
 
             myConn.Open();
             users = new DataSet();
@@ -68,8 +69,11 @@ namespace wwrestaurant
             if (username.Text.Equals("admin") && password.Text.Equals("admin"))
             {
                 this.Hide();
-                Menu menuform = new Menu();
-                menuform.ShowDialog();
+                // modify
+                //Menu menuform = new Menu();
+                //menuform.ShowDialog();
+                Start_Page start_page = new Start_Page();
+                start_page.ShowDialog();
             }
             else
             {
