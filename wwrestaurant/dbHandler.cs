@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Runtime.Remoting.Contexts;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace wwrestaurant {
     class dbHandler {
@@ -33,21 +33,21 @@ namespace wwrestaurant {
         }
 
         //Metoda pentru a extrage UN item din meniu dupa NUME. Returneaza un tuple cu ID, descriere, pret, si URL-ul pozei
-        public (int itemId, string description, decimal price, string picture) GetMenuItem(string name) {
+        public (int itemId, string description, float price, string picture) GetMenuItem(string name) {
             using(SqlConnection connection = new SqlConnection(connstring)) {
                 try {
                     connection.Open();
 
                     string query = "SELECT item_id, description, price, picture FROM menu WHERE name = @name";
                     using(SqlCommand command = new SqlCommand(query, connection)) {
-                        
+
                         command.Parameters.AddWithValue("@name", name);
 
                         using(SqlDataReader reader = command.ExecuteReader()) {
                             if(reader.Read()) {
                                 int itemId = reader.GetInt32(reader.GetOrdinal("item_id"));
                                 string description = reader.GetString(reader.GetOrdinal("description"));
-                                decimal price = reader.GetDecimal(reader.GetOrdinal("price"));
+                                float price = (float)reader.GetDouble(reader.GetOrdinal("price"));
                                 string picture = reader.GetString(reader.GetOrdinal("picture"));
 
                                 return (itemId, description, price, picture);
