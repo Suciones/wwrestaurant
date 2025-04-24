@@ -13,43 +13,52 @@ using System.Windows.Forms;
 namespace wwrestaurant
 {
     public partial class Start_Page : Form
-    {
+    { // nu i bun codul 
+        
+    
         SqlConnection myCon = new SqlConnection();
-
+      
         DataSet tablenr = new DataSet();
 
         private enum TableStatus { Free, Reserved, Occupied }
-
         private TableStatus[] tableStatuses = new TableStatus[9]; // 9 tables
 
         private Panel[] indicatorPanels = new Panel[9];
 
-        private string mode;
+       // private string mode;
 
         private int? lastSelectedIndex = null;
         private void Start_Page_Load(object sender, EventArgs e)
         {
 
         }
+
+        
+       // private dbHandler db = new dbHandler();
+        private int selectedTableIndex = -1;  // -1 indicates no table selected (for example)
+
         public Start_Page()
         {
            
             InitializeComponent();
-            //this.mode = mode;
-            //if (mode == "order")
+
+            // Define the border style of the form to a dialog box.
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            // Set the MaximizeBox to false to remove the maximize box.
+            this.MaximizeBox = false;
+
+            // Set the MinimizeBox to false to remove the minimize box.
+            this.MinimizeBox = false;
+
+            // Set the start position of the form to the center of the screen.
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+           
+            //for (int i = 0; i < tableStatuses.Length; i++)
             //{
-            //    this.Text = "Start Order - Select Table";
-            //    lblPrompt.Text = "Choose your table:";
+            //    tableStatuses[i] = TableStatus.Free;
             //}
-            //else if (mode == "reserve")
-            //{
-            //    this.Text = "Reserve Table - Select Table";
-            //    lblPrompt.Text = "Reserve a table:";
-            //}
-            for (int i = 0; i < tableStatuses.Length; i++)
-            {
-                tableStatuses[i] = TableStatus.Free;
-            }
             // Assign manually-created panels to the array
             indicatorPanels[0] = panel8; // 1 1
             indicatorPanels[1] = panel2; // 1 2
@@ -64,7 +73,7 @@ namespace wwrestaurant
             // Initialize all table statuses as FREE and set colors to green
             for (int i = 0; i < 9; i++)
             {
-                tableStatuses[i] = TableStatus.Free;
+                //tableStatuses[i] = TableStatus.Free;
                 indicatorPanels[i].BackColor = Color.Green;
 
                 // Optional: make circle-shaped using Paint
@@ -76,18 +85,10 @@ namespace wwrestaurant
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void panel_11_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-        
-        
 
 
         private void btnClearChoice_Click_1(object sender, EventArgs e)
@@ -100,19 +101,29 @@ namespace wwrestaurant
             }
 
             int index = lastSelectedIndex.Value;
+            int tableNum = index + 1;
 
-            // Reset table status and indicator color
-            tableStatuses[index] = TableStatus.Free;
-            indicatorPanels[index].BackColor = Color.Green;
+            try
+            {
+               // db.ResetTableStatus(tableNum);
 
-            // Clear reference and message
-            lastSelectedIndex = null;
-            lblMessage.Text = "Choice cleared!";
-            lblMessage.ForeColor = Color.Green;
+                tableStatuses[index] = TableStatus.Free;
+                indicatorPanels[index].BackColor = Color.Green;
+
+                lastSelectedIndex = null;
+                lblMessage.Text = $"Table {tableNum} cleared!";
+                lblMessage.ForeColor = Color.Green;
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = $"Error clearing table: {ex.Message}";
+                lblMessage.ForeColor = Color.Red;
+            }
         }
 
+
         private void btnStartOrder_Click(object sender, EventArgs e)
-        { // aici se creaza o cocmanda noua care va avea order_id si table_id
+        {
             int tableNum;
             if (!int.TryParse(txtTable.Text.Trim(), out tableNum) || tableNum < 1 || tableNum > 9)
             {
@@ -120,28 +131,44 @@ namespace wwrestaurant
                 lblMessage.ForeColor = Color.Red;
                 return;
             }
+
             int index = tableNum - 1;
 
-            if (tableStatuses[index] == TableStatus.Free)
+            if (tableStatuses[index] == TableStatus.Free || tableStatuses[index] == TableStatus.Reserved)
             {
-                lastSelectedIndex = index;
-                
+                try
+                {
+                    // Example menu item list (replace this with actual selected item IDs from your UI logic)
+                    List<int> selectedItemIds = new List<int> { 1, 2 }; // ← Replace with real selection
+
+                    // Create the order with items
+                  //  db.createOrder(tableNum, selectedItemIds);
+
+                    // Update table status to 'occupied'
+                   // db.UpdateTableStatus(tableNum, "occupied");
+
+                    // Update UI
+                    lastSelectedIndex = index;
                     tableStatuses[index] = TableStatus.Occupied;
                     indicatorPanels[index].BackColor = Color.Red;
-                    lblMessage.Text = "Table chosen!";
+
+                    lblMessage.Text = $"Order created for Table {tableNum}!";
                     lblMessage.ForeColor = Color.Green;
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = $"Error creating order: {ex.Message}";
+                    lblMessage.ForeColor = Color.Red;
+                }
             }
-            else if (tableStatuses[index] == TableStatus.Reserved)
+            else
             {
-                lblMessage.Text = "Table reserved! Please choose another table!";
-                lblMessage.ForeColor = Color.Red;
-            }
-            else if (tableStatuses[index] == TableStatus.Occupied)
-            {
-                lblMessage.Text = "Wrong Table!";
+                lblMessage.Text = "Table is already occupied!";
                 lblMessage.ForeColor = Color.Red;
             }
         }
+
+
 
         private void btnReserveTable_Click(object sender, EventArgs e)
         {
@@ -152,27 +179,42 @@ namespace wwrestaurant
                 lblMessage.ForeColor = Color.Red;
                 return;
             }
+
             int index = tableNum - 1;
 
             if (tableStatuses[index] == TableStatus.Free)
             {
-                lastSelectedIndex = index;
+                try
+                {
+                   // db.UpdateTableStatus(tableNum, "reserved");
 
-                tableStatuses[index] = TableStatus.Reserved;
-                indicatorPanels[index].BackColor = Color.Yellow;
-                lblMessage.Text = "Table reserved!";
-                lblMessage.ForeColor = Color.Green;
+                    lastSelectedIndex = index;
+                    tableStatuses[index] = TableStatus.Reserved;
+                    indicatorPanels[index].BackColor = Color.Yellow;
+
+                    lblMessage.Text = $"Table {tableNum} reserved!";
+                    lblMessage.ForeColor = Color.Green;
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = $"Error reserving table: {ex.Message}";
+                    lblMessage.ForeColor = Color.Red;
+                }
             }
-            else if (tableStatuses[index] == TableStatus.Reserved)
+            else
             {
-                lblMessage.Text = "Table reserved! Please choose another table!";
+                lblMessage.Text = tableStatuses[index] == TableStatus.Reserved
+                    ? "Table already reserved!"
+                    : "Table is occupied!";
                 lblMessage.ForeColor = Color.Red;
             }
-            else if (tableStatuses[index] == TableStatus.Occupied)
-            {
-                lblMessage.Text = "Wrong Table!";
-                lblMessage.ForeColor = Color.Red;
-            }
+        }
+
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Form1 form1_login = new Form1();
+            form1_login.ShowDialog();
         }
     }
 }

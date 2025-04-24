@@ -137,5 +137,27 @@ namespace wwrestaurant {
                 }
             }
         }
+
+        public void UpdateTableStatus(int tableNumber, string status)
+        {
+            // Use a parameterized UPDATE query to avoid SQL injection
+            string query = "UPDATE tables SET status_table = @status WHERE table_nr = @tableNumber";
+            using (SqlConnection con = new SqlConnection(connString))
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                // Set parameter values
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@tableNumber", tableNumber);
+
+                con.Open();
+                cmd.ExecuteNonQuery();  // Execute the update command
+            }
+        }
+        public void ResetTableStatus(int tableNumber)
+        {
+            // Simply call UpdateTableStatus with "empty"
+            UpdateTableStatus(tableNumber, "empty");
+        }
+
     }
 }

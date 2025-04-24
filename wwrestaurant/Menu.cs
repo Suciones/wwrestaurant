@@ -62,8 +62,8 @@ namespace wwrestaurant
 
         private void btnManager_Click(object sender, EventArgs e)
         {
-            Form1_manager form1_manager = new Form1_manager();
-            form1_manager.ShowDialog();
+            //Form1_manager form1_manager = new Form1_manager();
+            //form1_manager.ShowDialog();
         }
 
        

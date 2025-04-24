@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start_Page));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClearChoice = new System.Windows.Forms.Button();
             this.lblMessage = new System.Windows.Forms.Label();
@@ -188,22 +188,22 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(249, 68);
+            this.label1.Location = new System.Drawing.Point(222, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(428, 60);
             this.label1.TabIndex = 0;
             this.label1.Text = "WW RESTAURANT";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.Location = new System.Drawing.Point(718, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 39);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Log in";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogin.Location = new System.Drawing.Point(718, 12);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(133, 39);
+            this.btnLogin.TabIndex = 1;
+            this.btnLogin.Text = "Log in";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label2
             // 
@@ -1416,7 +1416,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(884, 753);
+            this.ClientSize = new System.Drawing.Size(905, 753);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.panel36);
             this.Controls.Add(this.label43);
@@ -1497,7 +1497,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label1);
             this.Name = "Start_Page";
             this.Text = "Start_Page";
@@ -1546,7 +1546,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnClearChoice;
         private System.Windows.Forms.Label lblMessage;
