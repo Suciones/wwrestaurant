@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace wwrestaurant {
     class dbHandler {
-        private string connString; // Mergeti in Project -> Add New Data Source -> Database -> Dataset -> Show connection string.
-                                   // Inlocuiti |DataDirectoy| cu path-ul spre wwwrestaurant.mdf 
+        private string connString; //se va folosi string-ul catre azure
 
         private DataSet menu_ds;
         private DataSet order_items_ds;
@@ -28,7 +26,7 @@ namespace wwrestaurant {
 
 
 
-        //Constructorul l-am facut asftel incat sa nu trebuiasa initializate neaparat toate dataset-urile
+        //Constructorul l-am facut asftel incat sa nu trebuiasca initializate neaparat toate dataset-urile
         public dbHandler(string connString, DataSet menu_ds = null, DataSet order_items_ds = null,
                         DataSet orders_ds = null, DataSet tables_ds = null, DataSet users_ds = null, DataSet waiters_ds = null) {
 
@@ -58,13 +56,13 @@ namespace wwrestaurant {
         }
 
         //Metoda pentru a extrage UN item din meniu dupa NUME. Returneaza un tuple cu ID, descriere, pret, si URL-ul pozei
-        public (int itemId, string description, float price, string picture) GetMenuItem(string name) {
+        public (int itemId, string description, decimal price, string picture) GetMenuItem(string name) {
             using(SqlConnection connection = new SqlConnection(connString)) {
                 try {
                     connection.Open();
                     RefreshDataset(menu_ds, menu_ad, "menu");
 
-                    string query = "SELECT item_id, description, price, picture FROM menu WHERE name = @name";
+                    string query = "SELECT item_id, description, price, picture FROM dbo.menu WHERE name = @name";
                     using(SqlCommand command = new SqlCommand(query, connection)) {
 
                         command.Parameters.AddWithValue("@name", name);
@@ -72,12 +70,20 @@ namespace wwrestaurant {
                         using(SqlDataReader reader = command.ExecuteReader()) {
                             if(reader.Read()) {
                                 int itemId = reader.GetInt32(reader.GetOrdinal("item_id"));
-                                string description = reader.GetString(reader.GetOrdinal("description"));
-                                float price = (float)reader.GetDouble(reader.GetOrdinal("price"));
-                                string picture = reader.GetString(reader.GetOrdinal("picture"));
+
+                                string description = reader.IsDBNull(reader.GetOrdinal("description"))
+                                    ? ""
+                                    : reader.GetString(reader.GetOrdinal("description"));
+
+                                decimal price = reader.IsDBNull(reader.GetOrdinal("price"))
+                                    ? 0.0m
+                                    : reader.GetDecimal(reader.GetOrdinal("price"));
+
+                                string picture = reader.IsDBNull(reader.GetOrdinal("picture"))
+                                    ? ""
+                                    : reader.GetString(reader.GetOrdinal("picture"));
 
                                 return (itemId, description, price, picture);
-
                             }
                             else {
                                 throw new Exception($"Menu item with name '{name}' not found.");
@@ -89,7 +95,38 @@ namespace wwrestaurant {
                     throw new Exception("Error retrieving menu item: " + ex.Message);
                 }
             }
+        }
 
+        //Functie de adaugat item in meniu (admin). Se seteaza nume, descriere, pret si path-ul catre poza (optional)
+        public void AddMenuItem(string name, string description, decimal price, string picture = "") {
+            using(SqlConnection connection = new SqlConnection(connString)) {
+                try {
+                    connection.Open();
+                    using(SqlTransaction transaction = connection.BeginTransaction()) {
+                        try {
+                            string query = "INSERT INTO menu (name, description, price, picture) VALUES (@name, @description, @price, @picture)";
+                            using(SqlCommand command = new SqlCommand(query, connection, transaction)) {
+                                command.Parameters.AddWithValue("@name", name);
+                                command.Parameters.AddWithValue("@description", description);
+                                command.Parameters.AddWithValue("@price", price);
+                                command.Parameters.AddWithValue("@picture", picture);
+
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch(Exception e) {
+                            transaction.Rollback();
+                            throw new Exception("Error adding to database: " + e.Message + " Rolling back...");
+
+                        }
+                    }
+                }
+                catch(Exception e) {
+                    throw new Exception("Error connecting to database: " + e.Message);
+                }
+            }
         }
 
         //Functia createOrder are ca input numarul mesei la care se efectueaza comanda si o lista cu iteme din meniu. 
@@ -134,8 +171,75 @@ namespace wwrestaurant {
                         transaction.Rollback();
                         throw new Exception("Error creating order: " + ex.Message);
                     }
+
                 }
             }
         }
+
+
+
+        //Functie de complete order. Ia ca input id-ul comenzii si returneaza true daca ordinul
+        //este eligibil pentru compensatie dupa 30 de minute, sau false daca nu este.
+        //Poate fi folosit direct, sau printr-o variabila (e.g. bool result = handler.CompleteOrder(id))
+        //In cazul asta CompleteOrder() va fi executat si va stoca rezultatul in result.
+        public bool CompleteOrder(int id) {
+            using(SqlConnection connection = new SqlConnection(connString)) {
+                try {
+                    connection.Open();
+
+                    using(SqlTransaction transaction = connection.BeginTransaction()) {
+                        try {
+                            string update_query = "UPDATE orders SET status = 'completed' WHERE order_id = @id AND status != 'completed'";
+                            string select_query = "SELECT time FROM orders WHERE order_id = @id";
+                            DateTime orderTime;
+                            int affected_rows;
+
+                            using(SqlCommand update_command = new SqlCommand(update_query, connection, transaction)) {
+                                update_command.Parameters.AddWithValue("@id", id);
+                                affected_rows = update_command.ExecuteNonQuery();
+
+                                if(affected_rows == 0) {
+                                    Console.WriteLine("Order has already been completed!");
+                                }
+                            }
+
+                            using(SqlCommand select_command = new SqlCommand(select_query, connection, transaction)) {
+                                select_command.Parameters.AddWithValue("@id", id);
+
+                                using(SqlDataReader reader = select_command.ExecuteReader()) {
+                                    if(reader.Read()) {
+                                        orderTime = reader.GetDateTime(reader.GetOrdinal("time"));
+                                    }
+                                    else {
+                                        throw new Exception("Order with ID " + id + " not found!");
+                                    }
+                                }
+                            }
+
+                            transaction.Commit();
+
+                            DateTime now = DateTime.Now;
+                            now = now.AddHours(-3);
+                            Console.WriteLine($"Order time: {orderTime}, Now: {now}, Order+30min: {orderTime.AddMinutes(30)}");
+
+                            return now > orderTime.AddMinutes(30);
+
+
+                        }
+                        catch(Exception e) {
+                            transaction.Rollback();
+                            throw new Exception("Error completing order: " + e.Message + " Rolling back...");
+                        }
+                    }
+                }
+                catch(Exception e) {
+                    throw new Exception("Error connecting to database: " + e.Message);
+                }
+            }
+        }
+
+
+
+
     }
 }

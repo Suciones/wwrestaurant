@@ -46,3 +46,4 @@ C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debu
 C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
 C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Start_Page.resources
+C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Start_Page.resources
