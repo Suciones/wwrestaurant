@@ -165,12 +165,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1_manager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1_manager.Designer.cs">
-      <DependentUpon>Form1_manager.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1_menu_table.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +176,12 @@
     </Compile>
     <Compile Include="Form2_tables.Designer.cs">
       <DependentUpon>Form2_tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Manager.Designer.cs">
+      <DependentUpon>Form_Manager.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -205,14 +205,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1_manager.resx">
-      <DependentUpon>Form1_manager.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1_menu_table.resx">
       <DependentUpon>Form1_menu_table.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2_tables.resx">
       <DependentUpon>Form2_tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Manager.resx">
+      <DependentUpon>Form_Manager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

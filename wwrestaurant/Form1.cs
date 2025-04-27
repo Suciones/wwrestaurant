@@ -22,6 +22,8 @@ namespace wwrestaurant
             InitializeComponent();
             // nu merge baza de date ca e file ul din folderul lui razvan 
             //myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
+           
+            //**A
             myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
 
             myConn.Open();
@@ -72,8 +74,11 @@ namespace wwrestaurant
                 // modify
                 //Menu menuform = new Menu();
                 //menuform.ShowDialog();
-                Start_Page start_page = new Start_Page();
-                start_page.ShowDialog();
+                //Start_Page start_page = new Start_Page();
+                //start_page.ShowDialog();
+                Form_Manager form_manager = new Form_Manager();
+                form_manager.ShowDialog();
+
             }
             else
             {

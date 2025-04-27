@@ -176,6 +176,7 @@ namespace wwrestaurant {
             }
         }
 
+<<<<<<< HEAD
 
 
         //Functie de complete order. Ia ca input id-ul comenzii si returneaza true daca ordinul
@@ -240,6 +241,28 @@ namespace wwrestaurant {
 
 
 
+=======
+        public void UpdateTableStatus(int tableNumber, string status)
+        {
+            // Use a parameterized UPDATE query to avoid SQL injection
+            string query = "UPDATE tables SET status_table = @status WHERE table_nr = @tableNumber";
+            using (SqlConnection con = new SqlConnection(connString))
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                // Set parameter values
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@tableNumber", tableNumber);
+
+                con.Open();
+                cmd.ExecuteNonQuery();  // Execute the update command
+            }
+        }
+        public void ResetTableStatus(int tableNumber)
+        {
+            // Simply call UpdateTableStatus with "empty"
+            UpdateTableStatus(tableNumber, "empty");
+        }
+>>>>>>> 44ed874a5190eda819c2d7a6b8aba7c41d9e9dfd
 
     }
 }

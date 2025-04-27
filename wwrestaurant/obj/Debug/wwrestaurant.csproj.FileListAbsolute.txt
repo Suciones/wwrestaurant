@@ -23,7 +23,6 @@ C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.exe
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\bin\Debug\wwrestaurant.pdb
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_menu_table.resources
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form2_tables.resources
-C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_manager.resources
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_manager.resources
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form1_menu_table.resources
 D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form2_tables.resources
@@ -46,4 +45,8 @@ C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debu
 C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
 C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
 C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Start_Page.resources
+<<<<<<< HEAD
 C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Start_Page.resources
+=======
+C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.Form_Manager.resources
+>>>>>>> 44ed874a5190eda819c2d7a6b8aba7c41d9e9dfd
