@@ -197,6 +197,12 @@
     <Compile Include="Start_Page.Designer.cs">
       <DependentUpon>Start_Page.cs</DependentUpon>
     </Compile>
+    <Compile Include="WaiterPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaiterPage.Designer.cs">
+      <DependentUpon>WaiterPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="wwrestaurantDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -229,6 +235,9 @@
     </Compile>
     <EmbeddedResource Include="Start_Page.resx">
       <DependentUpon>Start_Page.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaiterPage.resx">
+      <DependentUpon>WaiterPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

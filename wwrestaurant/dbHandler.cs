@@ -8,7 +8,7 @@ using System.Data;
 
 namespace wwrestaurant {
     class dbHandler {
-        private string connString; //se va folosi string-ul catre azure
+        private string connString= @"Server=tcp:wwrestaurantserver.database.windows.net,1433;Initial Catalog=wwrestaurant;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=""Active Directory Default"""; //se va folosi string-ul catre azure
 
         private DataSet menu_ds;
         private DataSet order_items_ds;
@@ -28,7 +28,7 @@ namespace wwrestaurant {
 
         //Constructorul l-am facut asftel incat sa nu trebuiasca initializate neaparat toate dataset-urile
         public dbHandler(string connString, DataSet menu_ds = null, DataSet order_items_ds = null,
-                        DataSet orders_ds = null, DataSet tables_ds = null, DataSet users_ds = null, DataSet waiters_ds = null) {
+                        DataSet orders_ds = null, DataSet tables_ds = null, DataSet users_ds = null) {
 
             //dataset-urile
             this.connString = connString;
@@ -176,7 +176,7 @@ namespace wwrestaurant {
             }
         }
 
-<<<<<<< HEAD
+
 
 
         //Functie de complete order. Ia ca input id-ul comenzii si returneaza true daca ordinul
@@ -241,7 +241,7 @@ namespace wwrestaurant {
 
 
 
-=======
+
         public void UpdateTableStatus(int tableNumber, string status)
         {
             // Use a parameterized UPDATE query to avoid SQL injection
@@ -262,7 +262,7 @@ namespace wwrestaurant {
             // Simply call UpdateTableStatus with "empty"
             UpdateTableStatus(tableNumber, "empty");
         }
->>>>>>> 44ed874a5190eda819c2d7a6b8aba7c41d9e9dfd
+
 
     }
 }
