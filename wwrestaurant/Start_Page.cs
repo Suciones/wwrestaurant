@@ -13,29 +13,19 @@ using System.Windows.Forms;
 namespace wwrestaurant
 {
     public partial class Start_Page : Form
-    { // nu i bun codul 
-        
-    
-        SqlConnection myCon = new SqlConnection();
-      
-        DataSet tablenr = new DataSet();
+    {
+        public DataSet menu_ds = new DataSet();
+        public DataSet order_items_ds = new DataSet();
+        public DataSet orders_ds = new DataSet();
+        public DataSet tables_ds = new DataSet();
+        private dbHandler db;
 
-        private enum TableStatus { Free, Reserved, Occupied }
-        private TableStatus[] tableStatuses = new TableStatus[9]; // 9 tables
+        private List<OrderItem> currentOrder = new List<OrderItem>();
+        private int selectedTable = -1;
+        private OrderForm orderForm;
 
-        private Panel[] indicatorPanels = new Panel[9];
+       
 
-       // private string mode;
-
-        private int? lastSelectedIndex = null;
-        private void Start_Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        
-       // private dbHandler db = new dbHandler();
-        private int selectedTableIndex = -1;  // -1 indicates no table selected (for example)
 
         public Start_Page()
         {
@@ -54,167 +44,132 @@ namespace wwrestaurant
             // Set the start position of the form to the center of the screen.
             this.StartPosition = FormStartPosition.CenterScreen;
 
-           
-            //for (int i = 0; i < tableStatuses.Length; i++)
-            //{
-            //    tableStatuses[i] = TableStatus.Free;
-            //}
-            // Assign manually-created panels to the array
-            indicatorPanels[0] = panel8; // 1 1
-            indicatorPanels[1] = panel2; // 1 2
-            indicatorPanels[2] = panel13; // 1 3
-            indicatorPanels[3] = panel6; // 2 1 
-            indicatorPanels[4] = panel10; // 2 2 
-            indicatorPanels[5] = panel15; // 2 3
-            indicatorPanels[6] = panel21; // 3 1
-            indicatorPanels[7] = panel19; // 3 2
-            indicatorPanels[8] = panel17; // 3 3 
+            InitializeComponent();
 
-            // Initialize all table statuses as FREE and set colors to green
-            for (int i = 0; i < 9; i++)
-            {
-                //tableStatuses[i] = TableStatus.Free;
-                indicatorPanels[i].BackColor = Color.Green;
-
-                // Optional: make circle-shaped using Paint
-                GraphicsPath gp = new GraphicsPath();
-                gp.AddEllipse(0, 0, indicatorPanels[i].Width, indicatorPanels[i].Height);
-                indicatorPanels[i].Region = new Region(gp);
-            }
-
+            db = new dbHandler(
+          
+         menu_ds: menu_ds,
+         order_items_ds: order_items_ds,
+         tables_ds: tables_ds
+                 );
         }
 
-
-        private void panel_11_Paint(object sender, PaintEventArgs e)
+        private void Start_Page_Load_1(object sender, EventArgs e)
         {
-
+            LoadTables();
+            SetupMenuGrid();
+            LoadMenu();
         }
 
-
-        private void btnClearChoice_Click_1(object sender, EventArgs e)
+        private void LoadTables()
         {
-            if (lastSelectedIndex == null)
+            db.RefreshDataset(db.tables_ds, db.tables_ad, "tables");
+            lstTables.Items.Clear();
+            foreach (DataRow row in db.tables_ds.Tables["tables"].Rows)
             {
-                lblMessage.Text = "You haven't selected a table yet.";
-                lblMessage.ForeColor = Color.Red;
-                return;
-            }
-
-            int index = lastSelectedIndex.Value;
-            int tableNum = index + 1;
-
-            try
-            {
-               // db.ResetTableStatus(tableNum);
-
-                tableStatuses[index] = TableStatus.Free;
-                indicatorPanels[index].BackColor = Color.Green;
-
-                lastSelectedIndex = null;
-                lblMessage.Text = $"Table {tableNum} cleared!";
-                lblMessage.ForeColor = Color.Green;
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = $"Error clearing table: {ex.Message}";
-                lblMessage.ForeColor = Color.Red;
+                if (row["status_table"].ToString() == "Free")
+                    lstTables.Items.Add((int)row["table_nr"]);
             }
         }
 
-
-        private void btnStartOrder_Click(object sender, EventArgs e)
+        private void SetupMenuGrid()
         {
-            int tableNum;
-            if (!int.TryParse(txtTable.Text.Trim(), out tableNum) || tableNum < 1 || tableNum > 9)
+            dgvMenu.Columns.Clear();
+            dgvMenu.Columns.Add("Name", "Item");
+            dgvMenu.Columns.Add("Price", "Price");
+
+            var imgCol = new DataGridViewImageColumn { Name = "Picture", HeaderText = "Image", ImageLayout = DataGridViewImageCellLayout.Zoom };
+            dgvMenu.Columns.Add(imgCol);
+            dgvMenu.Columns.Add("Quantity", "Qty");
+
+            var btnCol = new DataGridViewButtonColumn
             {
-                lblMessage.Text = "Please enter a valid table number (1–9).";
-                lblMessage.ForeColor = Color.Red;
-                return;
-            }
-
-            int index = tableNum - 1;
-
-            if (tableStatuses[index] == TableStatus.Free || tableStatuses[index] == TableStatus.Reserved)
-            {
-                try
-                {
-                    // Example menu item list (replace this with actual selected item IDs from your UI logic)
-                    List<int> selectedItemIds = new List<int> { 1, 2 }; // ← Replace with real selection
-
-                    // Create the order with items
-                  //  db.createOrder(tableNum, selectedItemIds);
-
-                    // Update table status to 'occupied'
-                   // db.UpdateTableStatus(tableNum, "occupied");
-
-                    // Update UI
-                    lastSelectedIndex = index;
-                    tableStatuses[index] = TableStatus.Occupied;
-                    indicatorPanels[index].BackColor = Color.Red;
-
-                    lblMessage.Text = $"Order created for Table {tableNum}!";
-                    lblMessage.ForeColor = Color.Green;
-                }
-                catch (Exception ex)
-                {
-                    lblMessage.Text = $"Error creating order: {ex.Message}";
-                    lblMessage.ForeColor = Color.Red;
-                }
-            }
-            else
-            {
-                lblMessage.Text = "Table is already occupied!";
-                lblMessage.ForeColor = Color.Red;
-            }
+                Name = "Add",
+                HeaderText = "Action",
+                Text = "Add to Order",
+                UseColumnTextForButtonValue = true
+            };
+            dgvMenu.Columns.Add(btnCol);
+            dgvMenu.RowTemplate.Height = 80;
+            dgvMenu.AllowUserToAddRows = false;
         }
 
-
-
-        private void btnReserveTable_Click(object sender, EventArgs e)
+        private void LoadMenu()
         {
-            int tableNum;
-            if (!int.TryParse(txtTable.Text.Trim(), out tableNum) || tableNum < 1 || tableNum > 9)
+            db.RefreshDataset(db.menu_ds, db.menu_ad, "menu");
+            dgvMenu.Rows.Clear();
+
+            foreach (DataRow row in db.menu_ds.Tables["menu"].Rows)
             {
-                lblMessage.Text = "Please enter a valid table number (1–9).";
-                lblMessage.ForeColor = Color.Red;
-                return;
-            }
+                int id = (int)row["item_id"];
+                string name = row["name"].ToString();
+                decimal price = (decimal)row["price"];
+                string picPath = row["picture"].ToString();
+                Image img = null;
+                try { img = Image.FromFile(System.IO.Path.Combine(Application.StartupPath, picPath)); }
+                catch { img = new Bitmap(1, 1); }
 
-            int index = tableNum - 1;
-
-            if (tableStatuses[index] == TableStatus.Free)
-            {
-                try
-                {
-                   // db.UpdateTableStatus(tableNum, "reserved");
-
-                    lastSelectedIndex = index;
-                    tableStatuses[index] = TableStatus.Reserved;
-                    indicatorPanels[index].BackColor = Color.Yellow;
-
-                    lblMessage.Text = $"Table {tableNum} reserved!";
-                    lblMessage.ForeColor = Color.Green;
-                }
-                catch (Exception ex)
-                {
-                    lblMessage.Text = $"Error reserving table: {ex.Message}";
-                    lblMessage.ForeColor = Color.Red;
-                }
-            }
-            else
-            {
-                lblMessage.Text = tableStatuses[index] == TableStatus.Reserved
-                    ? "Table already reserved!"
-                    : "Table is occupied!";
-                lblMessage.ForeColor = Color.Red;
+                int r = dgvMenu.Rows.Add(name, price.ToString("C"), img, 1);
+                dgvMenu.Rows[r].Tag = id;
             }
         }
 
+     
 
-        private void btnLogin_Click(object sender, EventArgs e)
+       
+
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
         {
             Form1 form1_login = new Form1();
             form1_login.ShowDialog();
         }
+
+        private void lstTables_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            if (lstTables.SelectedItem != null)
+            {
+                selectedTable = (int)lstTables.SelectedItem;
+                currentOrder.Clear();
+                orderForm?.Close();
+                orderForm = new OrderForm(currentOrder, selectedTable);
+                orderForm.Show();
+            }
+
+        }
+
+        private void dvgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0 && dgvMenu.Columns[e.ColumnIndex].Name == "Add")
+            {
+                var row = dgvMenu.Rows[e.RowIndex];
+                int itemId = (int)row.Tag;
+                string name = row.Cells["Name"].Value.ToString();
+                decimal price = decimal.Parse(row.Cells["Price"].Value.ToString(), System.Globalization.NumberStyles.Currency);
+                int qty = int.TryParse(row.Cells["Quantity"].Value?.ToString(), out int q) ? q : 1;
+
+                var existing = currentOrder.Find(i => i.ItemId == itemId);
+                if (existing != null)
+                    existing.Quantity += qty;
+                else
+                    currentOrder.Add(new OrderItem { ItemId = itemId, Name = name, Price = price, Quantity = qty });
+
+                orderForm?.RefreshGrid();
+            }
+        }
+
+      
+    }
+
+    public class OrderItem
+    {
+        public int ItemId { get; set; }       // From menu.item_id
+        public string Name { get; set; }      // menu.name
+        public decimal Price { get; set; }    // menu.price
+        public int Quantity { get; set; }     // user input
+
+        public decimal Total => Price * Quantity;
     }
 }

@@ -76,8 +76,7 @@ namespace wwrestaurant
                 //menuform.ShowDialog();
                 //Start_Page start_page = new Start_Page();
                 //start_page.ShowDialog();
-                Form_Manager form_manager = new Form_Manager();
-                form_manager.ShowDialog();
+               
 
             }
             else
