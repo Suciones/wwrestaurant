@@ -24,16 +24,14 @@ namespace wwrestaurant
             //myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Razvan\OneDrive\Desktop\WWRestaurant\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
            
             //**A
-            myConn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\Desktop\WWR\wwrestaurant\wwrestaurant\wwrestaurant.mdf;Integrated Security=True;Connect Timeout=30";
+          
+            //users = new DataSet();
+            //SqlDataAdapter usersAdapter = new SqlDataAdapter("SELECT *  FROM users", myConn);
+            //usersAdapter.Fill(users, "users");
 
-            myConn.Open();
-            users = new DataSet();
-            SqlDataAdapter usersAdapter = new SqlDataAdapter("SELECT *  FROM users", myConn);
-            usersAdapter.Fill(users, "users");
-
-            foreach(DataRow dr in users.Tables["users"].Rows) {
-                Console.WriteLine(dr["username"]);
-            }
+            //foreach(DataRow dr in users.Tables["users"].Rows) {
+            //    Console.WriteLine(dr["username"]);
+            //}
 
             // Define the border style of the form to a dialog box.
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -122,8 +120,5 @@ namespace wwrestaurant
             }
         }
 
-        private void checkLogin() {
-            
-        }
     }
 }

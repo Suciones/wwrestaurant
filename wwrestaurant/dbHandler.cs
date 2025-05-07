@@ -7,10 +7,8 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace wwrestaurant {
-    class dbHandler {
-        private string connString= @"Server=tcp:wwrestaurantserver.database.windows.net,1433;Initial Catalog=wwrestaurant;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=""Active Directory Default"""; //se va folosi string-ul catre azure
-
-        public DataSet menu_ds;
+        public class dbHandler {
+        private string connString = @"Server=tcp:wwrestaurantserver.database.windows.net,1433;Initial Catalog=wwrestaurant;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=""Active Directory Default"""; public DataSet menu_ds;
         public DataSet order_items_ds;
         public DataSet orders_ds;
         public DataSet tables_ds;
@@ -39,11 +37,11 @@ namespace wwrestaurant {
             this.users_ds = users_ds ?? this.users_ds;
           
             //adapters
-            menu_ad = new SqlDataAdapter("SELECT * FROM menu", connString);
-            order_items_ad = new SqlDataAdapter("SELECT * FROM order_items", connString);
-            orders_ad = new SqlDataAdapter("SELECT * FROM orders", connString);
-            tables_ad = new SqlDataAdapter("SELECT * FROM tables", connString);
-            users_ad = new SqlDataAdapter("SELECT * FROM users", connString);
+            menu_ad = new SqlDataAdapter("SELECT * FROM menu", this.connString);
+            order_items_ad = new SqlDataAdapter("SELECT * FROM order_items", this.connString);
+            orders_ad = new SqlDataAdapter("SELECT * FROM orders", this.connString);
+            tables_ad = new SqlDataAdapter("SELECT * FROM tables", this.connString);
+            users_ad = new SqlDataAdapter("SELECT * FROM users", this.connString);
             
 
 

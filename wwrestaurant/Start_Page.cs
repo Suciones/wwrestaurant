@@ -20,38 +20,27 @@ namespace wwrestaurant
         public DataSet tables_ds = new DataSet();
         private dbHandler db;
 
-        private List<OrderItem> currentOrder = new List<OrderItem>();
-        private int selectedTable = -1;
+        public List<OrderItem> currentOrder = new List<OrderItem>();
+        public int selectedTable = -1;
         private OrderForm orderForm;
 
-       
-
+        
 
         public Start_Page()
         {
            
             InitializeComponent();
 
-            // Define the border style of the form to a dialog box.
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
-
-            // Set the MaximizeBox to false to remove the maximize box.
             this.MaximizeBox = false;
-
-            // Set the MinimizeBox to false to remove the minimize box.
             this.MinimizeBox = false;
-
-            // Set the start position of the form to the center of the screen.
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            InitializeComponent();
+            db = new dbHandler(menu_ds: menu_ds,order_items_ds: order_items_ds,tables_ds: tables_ds );
 
-            db = new dbHandler(
-          
-         menu_ds: menu_ds,
-         order_items_ds: order_items_ds,
-         tables_ds: tables_ds
-                 );
+            db.menu_ad.Fill(menu_ds);
+         
+
         }
 
         private void Start_Page_Load_1(object sender, EventArgs e)
@@ -105,12 +94,13 @@ namespace wwrestaurant
                 string name = row["name"].ToString();
                 decimal price = (decimal)row["price"];
                 string picPath = row["picture"].ToString();
-                Image img = null;
+
+                Image img;
                 try { img = Image.FromFile(System.IO.Path.Combine(Application.StartupPath, picPath)); }
                 catch { img = new Bitmap(1, 1); }
 
-                int r = dgvMenu.Rows.Add(name, price.ToString("C"), img, 1);
-                dgvMenu.Rows[r].Tag = id;
+                int rowIndex = dgvMenu.Rows.Add(name, price.ToString("C"), img, 1);
+                dgvMenu.Rows[rowIndex].Tag = id; // Tag = item_id for tracking
             }
         }
 
@@ -133,7 +123,8 @@ namespace wwrestaurant
                 selectedTable = (int)lstTables.SelectedItem;
                 currentOrder.Clear();
                 orderForm?.Close();
-                orderForm = new OrderForm(currentOrder, selectedTable);
+                orderForm = new OrderForm(currentOrder, selectedTable, db);
+                MessageBox.Show("Opening OrderForm");
                 orderForm.Show();
             }
 
@@ -141,8 +132,9 @@ namespace wwrestaurant
 
         private void dvgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
 
-            if (e.RowIndex >= 0 && dgvMenu.Columns[e.ColumnIndex].Name == "Add")
+            if (dgvMenu.Columns[e.ColumnIndex].Name == "Add")
             {
                 var row = dgvMenu.Rows[e.RowIndex];
                 int itemId = (int)row.Tag;
@@ -155,7 +147,11 @@ namespace wwrestaurant
                     existing.Quantity += qty;
                 else
                     currentOrder.Add(new OrderItem { ItemId = itemId, Name = name, Price = price, Quantity = qty });
-
+                if (orderForm == null)
+                {
+                    MessageBox.Show("Please select a table first!");
+                    return;
+                }
                 orderForm?.RefreshGrid();
             }
         }

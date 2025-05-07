@@ -106,7 +106,7 @@
             this.dgvMenu.Name = "dgvMenu";
             this.dgvMenu.RowHeadersWidth = 51;
             this.dgvMenu.RowTemplate.Height = 24;
-            this.dgvMenu.Size = new System.Drawing.Size(679, 230);
+            this.dgvMenu.Size = new System.Drawing.Size(786, 230);
             this.dgvMenu.TabIndex = 5;
             this.dgvMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgMenu_CellContentClick);
             // 

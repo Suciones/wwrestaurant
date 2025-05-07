@@ -22,22 +22,19 @@ namespace wwrestaurant
         private int selectedTable;
         private dbHandler db;
 
-        private BindingSource orderBinding = new BindingSource();
 
-        public OrderForm(List<OrderItem> orderList, int tableNr)
+
+        public OrderForm(List<OrderItem> orderList, int tableNr, dbHandler dbHandler)
         {
             InitializeComponent();
 
             currentOrder = orderList;
             selectedTable = tableNr;
+            db = dbHandler;
 
-            // ✅ Create dbHandler after fields are ready
-            db = new dbHandler(
-               
-                menu_ds: menu_ds,
-                order_items_ds: order_items_ds,
-                tables_ds: tables_ds
-            );
+            this.StartPosition = FormStartPosition.Manual;
+            this.Left = Screen.PrimaryScreen.WorkingArea.Left + 20; // float on left
+            this.Top = Screen.PrimaryScreen.WorkingArea.Top + 100;
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
@@ -45,9 +42,7 @@ namespace wwrestaurant
             SetupGrid();
             RefreshGrid();
 
-            orderBinding.DataSource = currentOrder;
-            dgvOrderItems.DataSource = orderBinding;
-
+           
             // Optional: auto-size columns
             dgvOrderItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -84,7 +79,7 @@ namespace wwrestaurant
             else if (dgvOrderItems.Columns[e.ColumnIndex].Name == "Minus") item.Quantity--;
 
             if (item.Quantity <= 0) currentOrder.Remove(item);
-            orderBinding.ResetBindings(false);
+           
             RefreshGrid();
         }
 
