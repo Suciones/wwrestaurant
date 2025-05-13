@@ -34,6 +34,7 @@
             this.completeorderbutton = new System.Windows.Forms.Button();
             this.totalprice = new System.Windows.Forms.Label();
             this.finishorderbutton = new System.Windows.Forms.Button();
+            this.TotalLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ItemsList
@@ -92,11 +93,20 @@
             this.finishorderbutton.Text = "Finish Order";
             this.finishorderbutton.UseVisualStyleBackColor = true;
             // 
+            // TotalLabel
+            // 
+            this.TotalLabel.AutoSize = true;
+            this.TotalLabel.Location = new System.Drawing.Point(677, 62);
+            this.TotalLabel.Name = "TotalLabel";
+            this.TotalLabel.Size = new System.Drawing.Size(0, 16);
+            this.TotalLabel.TabIndex = 6;
+            // 
             // WaiterPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TotalLabel);
             this.Controls.Add(this.finishorderbutton);
             this.Controls.Add(this.totalprice);
             this.Controls.Add(this.completeorderbutton);
@@ -119,5 +129,6 @@
         private System.Windows.Forms.Button completeorderbutton;
         private System.Windows.Forms.Label totalprice;
         private System.Windows.Forms.Button finishorderbutton;
+        private System.Windows.Forms.Label TotalLabel;
     }
 }
