@@ -371,6 +371,97 @@ namespace wwrestaurant {
 
             return items;
         }
+        public int GetItemIdByName(string itemName)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                string query = "SELECT item_id FROM menu WHERE name = @name";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", itemName);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        throw new Exception("Item not found in menu.");
+                    }
+                }
+            }
+        }
+        public void SetTableFreeByOrderId(int orderId)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                // Get the table number for the given order ID
+                string getTableQuery = "SELECT table_nr FROM orders WHERE order_id = @orderId";
+                int tableNr;
+
+                using (SqlCommand getCmd = new SqlCommand(getTableQuery, conn))
+                {
+                    getCmd.Parameters.AddWithValue("@orderId", orderId);
+                    object result = getCmd.ExecuteScalar();
+                    if (result == null)
+                        throw new Exception("Table not found for this order.");
+
+                    tableNr = Convert.ToInt32(result);
+                }
+
+                // Update the table status to "Free"
+                string updateQuery = "UPDATE tables SET status_table = 'Free' WHERE table_nr = @tableNr";
+                using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
+                {
+                    updateCmd.Parameters.AddWithValue("@tableNr", tableNr);
+                    updateCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void RemoveOneInstanceFromOrder(int orderId, int itemId)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                string query = @"
+            DELETE FROM order_items
+            WHERE order_id = @orderId AND item_id = @itemId
+            -- Delete only one row by limiting with TOP (use CTE for compatibility)
+            AND EXISTS (
+                SELECT TOP 1 * FROM order_items
+                WHERE order_id = @orderId AND item_id = @itemId
+            );";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.Parameters.AddWithValue("@itemId", itemId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void MarkOrderAsCompleted(int orderId)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                string query = "UPDATE Orders SET Status = 'completed' WHERE order_id = @orderId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+    
+
+
 
         // Add this method to your dbHandler class
         public string GetOrderStatus(int orderId)
@@ -443,6 +534,20 @@ namespace wwrestaurant {
         "Cancelled"
     };
         }
+        public void MarkOrderAsFinished(int orderId)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                string query = "UPDATE Orders SET Status = 'Finished' WHERE order_id = @orderId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public int ValidateLogin(string username, string password, string userType = "waiter")
         {
             try
