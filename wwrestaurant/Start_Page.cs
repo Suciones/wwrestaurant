@@ -24,11 +24,8 @@ namespace wwrestaurant
         public int selectedTable = -1;
         private OrderForm orderForm;
 
-        
-
         public Start_Page()
         {
-           
             InitializeComponent();
 
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -36,12 +33,30 @@ namespace wwrestaurant
             this.MinimizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            db = new dbHandler(menu_ds: menu_ds,order_items_ds: order_items_ds,tables_ds: tables_ds );
+            db = new dbHandler(menu_ds: menu_ds, order_items_ds: order_items_ds, tables_ds: tables_ds);
 
             db.menu_ad.Fill(menu_ds);
-         
 
+            // Subscribe to the table status changed event
+            TableStatusManager.TableStatusChanged += TableStatusManager_TableStatusChanged;
         }
+
+        // Event handler for table status changes
+        private void TableStatusManager_TableStatusChanged(object sender, EventArgs e)
+        {
+            // Use Invoke to ensure we're on the UI thread
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => LoadTables()));
+            }
+            else
+            {
+                LoadTables();
+            }
+        }
+
+        // Make sure to unsubscribe when the form is disposed
+        
 
         private void Start_Page_Load_1(object sender, EventArgs e)
         {
@@ -50,7 +65,8 @@ namespace wwrestaurant
             LoadMenu();
         }
 
-        private void LoadTables()
+        // Keep your existing LoadTables method
+        public void LoadTables()
         {
             db.RefreshDataset(db.tables_ds, db.tables_ad, "tables");
             lstTables.Items.Clear();

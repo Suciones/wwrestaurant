@@ -35,6 +35,7 @@
             this.totalprice = new System.Windows.Forms.Label();
             this.finishorderbutton = new System.Windows.Forms.Button();
             this.TotalLabel = new System.Windows.Forms.Label();
+            this.removeitembutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ItemsList
@@ -74,6 +75,7 @@
             this.completeorderbutton.TabIndex = 3;
             this.completeorderbutton.Text = "Complete Order";
             this.completeorderbutton.UseVisualStyleBackColor = true;
+            this.completeorderbutton.Click += new System.EventHandler(this.completeorderbutton_Click);
             // 
             // totalprice
             // 
@@ -92,6 +94,7 @@
             this.finishorderbutton.TabIndex = 5;
             this.finishorderbutton.Text = "Finish Order";
             this.finishorderbutton.UseVisualStyleBackColor = true;
+            this.finishorderbutton.Click += new System.EventHandler(this.finishorderbutton_Click);
             // 
             // TotalLabel
             // 
@@ -101,11 +104,22 @@
             this.TotalLabel.Size = new System.Drawing.Size(0, 16);
             this.TotalLabel.TabIndex = 6;
             // 
+            // removeitembutton
+            // 
+            this.removeitembutton.Location = new System.Drawing.Point(677, 226);
+            this.removeitembutton.Name = "removeitembutton";
+            this.removeitembutton.Size = new System.Drawing.Size(75, 54);
+            this.removeitembutton.TabIndex = 7;
+            this.removeitembutton.Text = "Remove Item";
+            this.removeitembutton.UseVisualStyleBackColor = true;
+            this.removeitembutton.Click += new System.EventHandler(this.removeitembutton_Click);
+            // 
             // WaiterPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.removeitembutton);
             this.Controls.Add(this.TotalLabel);
             this.Controls.Add(this.finishorderbutton);
             this.Controls.Add(this.totalprice);
@@ -130,5 +144,6 @@
         private System.Windows.Forms.Label totalprice;
         private System.Windows.Forms.Button finishorderbutton;
         private System.Windows.Forms.Label TotalLabel;
+        private System.Windows.Forms.Button removeitembutton;
     }
 }
