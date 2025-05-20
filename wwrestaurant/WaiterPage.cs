@@ -11,6 +11,7 @@ namespace wwrestaurant
     {
         dbHandler dbHandler;
         int waiterUserId;
+        private Start_Page startPageReference;
 
         public WaiterPage(int userId)
         {
@@ -163,13 +164,17 @@ namespace wwrestaurant
                     MessageBox.Show(receiptText, "Receipt");
 
                     // Update order status
-                    dbHandler.UpdateOrderStatus(orderId, "finished");
+                    dbHandler.UpdateOrderStatus(orderId, "Finished");
 
                     // Free the table
                     dbHandler.SetTableFreeByOrderId(orderId);
 
                     // Refresh order list
                     LoadOrders();
+
+                    // Notify all subscribers that table status has changed
+                    // This will trigger the LoadTables method in Start_Page
+                    TableStatusManager.NotifyTableStatusChanged();
 
                     ItemsList.Items.Clear();
                     TotalLabel.Text = "Total: $0.00";

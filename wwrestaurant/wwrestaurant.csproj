@@ -203,6 +203,7 @@
     <Compile Include="Start_Page.Designer.cs">
       <DependentUpon>Start_Page.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableStatusManager.cs" />
     <Compile Include="WaiterPage.cs">
       <SubType>Form</SubType>
     </Compile>

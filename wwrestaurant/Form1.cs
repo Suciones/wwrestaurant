@@ -80,6 +80,7 @@ namespace wwrestaurant
 
                 if (userId > 0)
                 {
+                    
                     Form startPage = this.Owner; // If Start_Page is the owner of Form1
 
                     // Hide both the login form and Start_Page
