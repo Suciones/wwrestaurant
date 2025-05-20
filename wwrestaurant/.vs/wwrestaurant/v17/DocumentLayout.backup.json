@@ -1,0 +1,119 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\adminpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|solutionrelative:adminpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\dbhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|solutionrelative:dbhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|c:\\users\\razvan\\onedrive\\desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\adminpage.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|solutionrelative:adminpage.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\start_page.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|solutionrelative:start_page.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\adminpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C2218909-A8A3-4896-943E-F2C032724DF4}|wwrestaurant.csproj|solutionrelative:adminpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dbHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\dbHandler.cs",
+              "RelativeDocumentMoniker": "dbHandler.cs",
+              "ToolTip": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\dbHandler.cs",
+              "RelativeToolTip": "dbHandler.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwFYCAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:02:09.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAowFsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:02:11.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Start_Page.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\Start_Page.cs",
+              "RelativeDocumentMoniker": "Start_Page.cs",
+              "ToolTip": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\Start_Page.cs [Design]",
+              "RelativeToolTip": "Start_Page.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:01:49.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminPage.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\AdminPage.Designer.cs",
+              "RelativeDocumentMoniker": "AdminPage.Designer.cs",
+              "ToolTip": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\AdminPage.Designer.cs",
+              "RelativeToolTip": "AdminPage.Designer.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwDsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T11:59:27.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminPage.cs",
+              "DocumentMoniker": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\AdminPage.cs",
+              "RelativeDocumentMoniker": "AdminPage.cs",
+              "ToolTip": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\AdminPage.cs*",
+              "RelativeToolTip": "AdminPage.cs*",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T11:59:20.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminPage.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\AdminPage.cs",
+              "RelativeDocumentMoniker": "AdminPage.cs",
+              "ToolTip": "C:\\Users\\Razvan\\OneDrive\\Desktop\\wwrestaurant\\wwrestaurant\\wwrestaurant\\AdminPage.cs [Design]*",
+              "RelativeToolTip": "AdminPage.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T11:58:43.525Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -65,44 +65,56 @@ namespace wwrestaurant
         }
 
         // Update your login_button_Click method in Form1.cs
-        private void login_button_Click(object sender, EventArgs e)
-        {
+        private void login_button_Click(object sender, EventArgs e) {
             string user = username.Text;
             string pass = password.Text;
 
-            try
-            {
+            try {
                 // Create a dbHandler instance
                 dbHandler db = new dbHandler();
 
-                // Call the ValidateLogin method to check credentials
-                int userId = db.ValidateLogin(user, pass);
+                // First try to validate as admin
+                int adminUserId = db.ValidateLogin(user, pass, "admin");
 
-                if (userId > 0)
-                {
-                    
+                // If admin login is successful
+                if(adminUserId > 0) {
                     Form startPage = this.Owner; // If Start_Page is the owner of Form1
 
                     // Hide both the login form and Start_Page
                     this.Hide();
-                    if (startPage != null)
-                    {
+                    if(startPage != null) {
                         startPage.Hide();
                     }
-                    WaiterPage page = new WaiterPage(userId);
-                    page.Show();
-                    
+
+                    // Open AdminPage instead of WaiterPage
+                    AdminPage adminPage = new AdminPage();
+                    adminPage.Show();
                 }
-                else
-                {
-                    errorlabel.Text = "Incorrect username or password";
+                else {
+                    // Try to validate as waiter (default)
+                    int userId = db.ValidateLogin(user, pass);
+
+                    if(userId > 0) {
+                        Form startPage = this.Owner; // If Start_Page is the owner of Form1
+
+                        // Hide both the login form and Start_Page
+                        this.Hide();
+                        if(startPage != null) {
+                            startPage.Hide();
+                        }
+                        WaiterPage page = new WaiterPage(userId);
+                        page.Show();
+                    }
+                    else {
+                        errorlabel.Text = "Incorrect username or password";
+                    }
                 }
             }
-            catch (Exception ex)
-            {
+            catch(Exception ex) {
                 errorlabel.Text = "Login error: " + ex.Message;
             }
         }
+
 
 
         private void username_KeyPress(object sender, KeyPressEventArgs e)

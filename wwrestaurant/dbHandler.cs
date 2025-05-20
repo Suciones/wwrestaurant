@@ -8,7 +8,7 @@ using System.Data;
 
 namespace wwrestaurant {
         public class dbHandler {
-        private string connString = @"Server=tcp:wwrestaurantserver.database.windows.net,1433;Initial Catalog=wwrestaurant;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=""Active Directory Default"""; public DataSet menu_ds;
+        public string connString = @"Server=tcp:wwrestaurantserver.database.windows.net,1433;Initial Catalog=wwrestaurant;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=""Active Directory Default"""; public DataSet menu_ds;
         public DataSet order_items_ds;
         public DataSet orders_ds;
         public DataSet tables_ds;
@@ -572,5 +572,32 @@ namespace wwrestaurant {
             }
         }
 
+        public List<(int id, string name)> GetWaiters() {
+            List<(int id, string name)> waiters = new List<(int id, string name)>();
+
+            using(SqlConnection connection = new SqlConnection(this.connString)) {
+                try {
+                    connection.Open();
+
+                    string query = "SELECT id, username FROM users WHERE type = 'waiter'";
+
+                    using(SqlCommand command = new SqlCommand(query, connection))
+                    using(SqlDataReader reader = command.ExecuteReader()) {
+                        while(reader.Read()) {
+                            int id = reader.GetInt32(reader.GetOrdinal("id"));
+                            string name = reader.GetString(reader.GetOrdinal("username"));
+                            waiters.Add((id, name));
+                        }
+                    }
+                }
+                catch(Exception ex) {
+                    throw new Exception("Error fetching waiters: " + ex.Message);
+                }
+            }
+
+            return waiters;
+        }
+
     }
+
 }
