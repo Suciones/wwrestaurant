@@ -321,10 +321,11 @@ namespace wwrestaurant {
             try {
                 // Configure the SqlDataAdapter with the INSERT, UPDATE, and DELETE commands
                 SqlCommandBuilder menuCommandBuilder = new SqlCommandBuilder(handler.menu_ad);
-
+                
                 // Update the database with changes from the DataSet
                 handler.menu_ad.Update(menu_ds, "menu");
                 MessageBox.Show("Menu changes saved successfully!");
+                MenuStatusManager.NotifyMenuStatusChanged();
             }
             catch(Exception ex) {
                 MessageBox.Show("Error saving changes: " + ex.Message);

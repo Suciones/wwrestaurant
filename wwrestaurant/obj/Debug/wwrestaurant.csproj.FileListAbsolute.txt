@@ -310,3 +310,6 @@ C:\Users\Razvan\OneDrive\Desktop\wwrestaurant\wwrestaurant\wwrestaurant\obj\Debu
 C:\Users\Razvan\OneDrive\Desktop\wwrestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestau.C8A306DF.Up2Date
 C:\Users\Razvan\OneDrive\Desktop\wwrestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.exe
 C:\Users\Razvan\OneDrive\Desktop\wwrestaurant\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.pdb
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\bin\Debug\Resources\card_back.PNG
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\bin\Debug\Resources\card_front.PNG
+D:\Facultate\Anul3\Semestrul2\II\WWRESTAURANT(proiect)\wwrestaurant\wwrestaurant\obj\Debug\wwrestaurant.PayForm.resources

@@ -39,6 +39,7 @@ namespace wwrestaurant
 
             // Subscribe to the table status changed event
             TableStatusManager.TableStatusChanged += TableStatusManager_TableStatusChanged;
+            MenuStatusManager.MenuStatusChanged += MenuStatusManager_MenuStatusChanged;
         }
 
         // Event handler for table status changes
@@ -54,9 +55,21 @@ namespace wwrestaurant
                 LoadTables();
             }
         }
+        private void MenuStatusManager_MenuStatusChanged(object sender, EventArgs e)
+        {
+            // Use Invoke to ensure we're on the UI thread
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => LoadMenu()));
+            }
+            else
+            {
+                LoadMenu();
+            }
+        }
 
         // Make sure to unsubscribe when the form is disposed
-        
+
 
         private void Start_Page_Load_1(object sender, EventArgs e)
         {
