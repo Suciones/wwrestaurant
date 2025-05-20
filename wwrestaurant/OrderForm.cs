@@ -23,6 +23,14 @@ namespace wwrestaurant
         private dbHandler db;
 
 
+        private Panel orderStatusPanel;
+        private Label lblOrderStatus;
+        private Timer fadeTimer;
+        private float opacityIncrement = 0.1f;
+
+        private Timer statusUpdateTimer;
+        private int latestOrderId;
+
 
         public OrderForm(List<OrderItem> orderList, int tableNr, dbHandler dbHandler)
         {
@@ -41,8 +49,8 @@ namespace wwrestaurant
         {
             SetupGrid();
             RefreshGrid();
+            SetupOrderStatusPanel();
 
-           
             // Optional: auto-size columns
             dgvOrderItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
@@ -83,9 +91,98 @@ namespace wwrestaurant
             RefreshGrid();
         }
 
-       
 
-        private void btnFinishOrder_Click_1(object sender, EventArgs e)
+        private void SetupOrderStatusPanel()
+        {
+            orderStatusPanel = new Panel();
+            orderStatusPanel.Size = new Size(this.ClientSize.Width, 50);
+            orderStatusPanel.Location = new Point(0, 10);
+            orderStatusPanel.BackColor = Color.Transparent;
+            orderStatusPanel.Visible = false;
+
+            lblOrderStatus = new Label();
+            lblOrderStatus.AutoSize = false;
+            lblOrderStatus.Dock = DockStyle.Fill;
+            lblOrderStatus.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+            lblOrderStatus.TextAlign = ContentAlignment.MiddleCenter;
+            lblOrderStatus.ForeColor = Color.Black;
+            lblOrderStatus.Text = "";
+
+            orderStatusPanel.Controls.Add(lblOrderStatus);
+            this.Controls.Add(orderStatusPanel);
+            orderStatusPanel.BringToFront();
+
+            // Set up fade-in animation
+            fadeTimer = new Timer();
+            fadeTimer.Interval = 50; // milliseconds
+            fadeTimer.Tick += (s, e) =>
+            {
+                if (orderStatusPanel.BackColor.A < 255)
+                {
+                    int newAlpha = Math.Min(orderStatusPanel.BackColor.A + (int)(255 * opacityIncrement), 255);
+                    orderStatusPanel.BackColor = Color.FromArgb(newAlpha, orderStatusPanel.BackColor);
+                    lblOrderStatus.ForeColor = Color.FromArgb(newAlpha, lblOrderStatus.ForeColor);
+                }
+                else
+                {
+                    fadeTimer.Stop();
+                }
+            };
+        }
+
+        private void UpdateOrderStatusLabel()
+        {
+            string status = db.GetOrderStatus(latestOrderId);
+            lblOrderStatus.Text = $"Order Status: {status}";
+
+            switch (status)
+            {
+                case "In Progress":
+                    lblOrderStatus.ForeColor = Color.DarkOrange;
+                    orderStatusPanel.BackColor = Color.FromArgb(255, 255, 204); // solid yellow
+                    break;
+                case "Ready to Serve":
+                case "Finished":
+                case "Served":
+                    lblOrderStatus.ForeColor = Color.ForestGreen;
+                    orderStatusPanel.BackColor = Color.FromArgb(204, 255, 204); // solid green
+                    break;
+                default:
+                    lblOrderStatus.ForeColor = Color.Gray;
+                    orderStatusPanel.BackColor = Color.FromArgb(200, 200, 200); // gray
+                    break;
+            }
+
+            orderStatusPanel.Visible = true;
+            orderStatusPanel.BringToFront();
+        }
+        private void StartStatusPolling()
+        {
+            if (statusUpdateTimer != null)
+            {
+                statusUpdateTimer.Stop();
+                statusUpdateTimer.Dispose();
+            }
+
+            statusUpdateTimer = new Timer();
+            statusUpdateTimer.Interval = 3000; // 3 seconds
+            statusUpdateTimer.Tick += (s, e) =>
+            {
+                try
+                {
+                    UpdateOrderStatusLabel();
+                }
+                catch (Exception ex)
+                {
+                    statusUpdateTimer.Stop();
+                    MessageBox.Show("Error updating order status: " + ex.Message);
+                }
+            };
+
+            statusUpdateTimer.Start();
+        }
+
+        private void btnFinishOrder_Click_1(object sender, EventArgs e) /// SEND ORDER
         {
             if (currentOrder.Count == 0)
             {
@@ -96,24 +193,70 @@ namespace wwrestaurant
             try
             {
                 db.createOrder2(selectedTable, currentOrder);
-                
+
                 db.RefreshDataset(db.orders_ds, db.orders_ad, "orders");
                 db.RefreshDataset(db.order_items_ds, db.order_items_ad, "order_items");
                 db.RefreshDataset(db.tables_ds, db.tables_ad, "tables");
 
                 MessageBox.Show("Order saved successfully!");
-                this.Close();
+                dgvOrderItems.Visible = false;
+                btnFinishOrder.Visible = false;
+
+                // Get latest order ID for this table
+                latestOrderId = db.orders_ds.Tables["orders"]
+                    .AsEnumerable()
+                    .Where(row => row.Field<int>("table_nr") == selectedTable)
+                    .OrderByDescending(row => row.Field<DateTime>("time"))
+                    .Select(row => row.Field<int>("order_id"))
+                    .FirstOrDefault();
+
+                // Display status immediately
+                UpdateOrderStatusLabel();
+
+                // Start the timer to poll status every 3 seconds
+                StartStatusPolling();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to save order: " + ex.Message);
+                MessageBox.Show("Failed to save order: " + ex.Message + "\n\n" + ex.StackTrace);
             }
         }
 
+
+
         private void btnCheck_Click_1(object sender, EventArgs e)
         {
-            decimal total = currentOrder.Sum(i => i.Price * i.Quantity);
-            MessageBox.Show($"Total: {total:C}");
+            try
+            {
+                // Get latest order ID
+                int latestOrderId = db.orders_ds.Tables["orders"]
+                    .AsEnumerable()
+                    .Where(row => row.Field<int>("table_nr") == selectedTable)
+                    .OrderByDescending(row => row.Field<DateTime>("time"))
+                    .Select(row => row.Field<int>("order_id"))
+                    .FirstOrDefault();
+
+                string status = db.GetOrderStatus(latestOrderId);
+
+                if (status != "Finished" && status != "Ready to Serve")
+                {
+                    MessageBox.Show("Order is not ready to be paid yet!");
+                    return;
+                }
+
+                // Show the pay window
+                PayForm payForm = new PayForm(currentOrder, selectedTable, "Waiter Name", this);
+                payForm.ShowDialog();
+                // ✅ Call handler to free the table
+                db.SetTableFree(selectedTable);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
+
     }
 }

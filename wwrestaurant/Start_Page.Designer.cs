@@ -102,11 +102,11 @@
             this.Picture,
             this.Quantity,
             this.Add});
-            this.dgvMenu.Location = new System.Drawing.Point(38, 629);
+            this.dgvMenu.Location = new System.Drawing.Point(27, 628);
             this.dgvMenu.Name = "dgvMenu";
             this.dgvMenu.RowHeadersWidth = 51;
             this.dgvMenu.RowTemplate.Height = 24;
-            this.dgvMenu.Size = new System.Drawing.Size(786, 230);
+            this.dgvMenu.Size = new System.Drawing.Size(678, 814);
             this.dgvMenu.TabIndex = 5;
             this.dgvMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgMenu_CellContentClick);
             // 

@@ -62,7 +62,7 @@
             this.btnFinishOrder.Name = "btnFinishOrder";
             this.btnFinishOrder.Size = new System.Drawing.Size(212, 74);
             this.btnFinishOrder.TabIndex = 2;
-            this.btnFinishOrder.Text = "Finish Order";
+            this.btnFinishOrder.Text = "Send Order";
             this.btnFinishOrder.UseVisualStyleBackColor = true;
             this.btnFinishOrder.Click += new System.EventHandler(this.btnFinishOrder_Click_1);
             // 
