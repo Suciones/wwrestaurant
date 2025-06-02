@@ -41,7 +41,9 @@ namespace wwrestaurant
 
             cmbTip.SelectedIndex = 0;
 
-            
+            AppStyle.ApplyFormStyle(this);
+
+
         }
 
 

@@ -49,6 +49,10 @@ namespace wwrestaurant {
 
             // Load initial statistics
             RefreshStatistics();
+
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void Calendar_DateChanged(object sender, DateRangeEventArgs e) {
@@ -387,6 +391,7 @@ namespace wwrestaurant {
             }
         }
 
+<<<<<<< HEAD
         private void refresh_Button_Click(object sender, EventArgs e) {
             try {
                 // Re-fill the menu dataset from the database
@@ -416,6 +421,13 @@ namespace wwrestaurant {
                 MessageBox.Show("Error refreshing users: " + ex.Message);
             }
         }
+=======
+        private void AdminPage_Load(object sender, EventArgs e)
+        {
+>>>>>>> 68f2dd8543824669b66018bd8feeff35fb709dff
 
+        }
+
+      
     }
 }
