@@ -31,7 +31,7 @@ namespace wwrestaurant
         private Timer statusUpdateTimer;
         private int latestOrderId;
 
-
+        private Start_Page startPageReference;
         public OrderForm(List<OrderItem> orderList, int tableNr, dbHandler dbHandler)
         {
             InitializeComponent();
@@ -40,9 +40,12 @@ namespace wwrestaurant
             selectedTable = tableNr;
             db = dbHandler;
 
+            AppStyle.ApplyFormStyle(this);
             this.StartPosition = FormStartPosition.Manual;
             this.Left = Screen.PrimaryScreen.WorkingArea.Left + 20; // float on left
             this.Top = Screen.PrimaryScreen.WorkingArea.Top + 100;
+
+
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
@@ -198,6 +201,7 @@ namespace wwrestaurant
                 db.RefreshDataset(db.order_items_ds, db.order_items_ad, "order_items");
                 db.RefreshDataset(db.tables_ds, db.tables_ad, "tables");
 
+                TableStatusManager.NotifyTableStatusChanged();
                 MessageBox.Show("Order saved successfully!");
                 dgvOrderItems.Visible = false;
                 btnFinishOrder.Visible = false;

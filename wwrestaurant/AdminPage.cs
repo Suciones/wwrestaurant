@@ -45,6 +45,10 @@ namespace wwrestaurant {
 
             // Load initial statistics
             RefreshStatistics();
+
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void Calendar_DateChanged(object sender, DateRangeEventArgs e) {
@@ -345,6 +349,11 @@ namespace wwrestaurant {
             }
         }
 
+        private void AdminPage_Load(object sender, EventArgs e)
+        {
 
+        }
+
+      
     }
 }

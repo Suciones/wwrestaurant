@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomePage = new System.Windows.Forms.TabPage();
+            this.openCalendarButton = new System.Windows.Forms.Button();
             this.dateLabel = new System.Windows.Forms.Label();
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -49,15 +50,12 @@
             this.saveUsersButton = new System.Windows.Forms.Button();
             this.deleteUsersButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            
-            this.openCalendarButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.welcomePage.SuspendLayout();
             this.editMenuPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.editUsersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-           
             this.SuspendLayout();
             // 
             // tabControl1
@@ -96,6 +94,19 @@
             this.welcomePage.Text = "tabPage1";
             this.welcomePage.UseVisualStyleBackColor = true;
             // 
+            // openCalendarButton
+            // 
+            this.openCalendarButton.BackColor = System.Drawing.Color.IndianRed;
+            this.openCalendarButton.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openCalendarButton.ForeColor = System.Drawing.Color.SeaShell;
+            this.openCalendarButton.Location = new System.Drawing.Point(167, 227);
+            this.openCalendarButton.Name = "openCalendarButton";
+            this.openCalendarButton.Size = new System.Drawing.Size(158, 38);
+            this.openCalendarButton.TabIndex = 26;
+            this.openCalendarButton.Text = "Select date";
+            this.openCalendarButton.UseVisualStyleBackColor = false;
+            this.openCalendarButton.Click += new System.EventHandler(this.openCalendarButton_Click);
+            // 
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
@@ -107,7 +118,7 @@
             // 
             // calendar
             // 
-            this.calendar.Location = new System.Drawing.Point(331, 58);
+            this.calendar.Location = new System.Drawing.Point(337, 58);
             this.calendar.Name = "calendar";
             this.calendar.SelectionRange = new System.Windows.Forms.SelectionRange(new System.DateTime(2024, 5, 19, 0, 0, 0, 0), new System.DateTime(2024, 5, 25, 0, 0, 0, 0));
             this.calendar.TabIndex = 24;
@@ -115,7 +126,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(633, 265);
+            this.textBox4.Location = new System.Drawing.Point(650, 272);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(100, 22);
@@ -123,7 +134,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(633, 373);
+            this.textBox3.Location = new System.Drawing.Point(649, 376);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(100, 22);
@@ -131,7 +142,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(331, 373);
+            this.textBox2.Location = new System.Drawing.Point(351, 376);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(100, 22);
@@ -140,7 +151,7 @@
             // textBox1
             // 
             this.textBox1.Cursor = System.Windows.Forms.Cursors.No;
-            this.textBox1.Location = new System.Drawing.Point(331, 269);
+            this.textBox1.Location = new System.Drawing.Point(351, 273);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(100, 22);
@@ -158,63 +169,67 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Sitka Display", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(486, 366);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 29);
+            this.label3.Size = new System.Drawing.Size(157, 33);
             this.label3.TabIndex = 18;
             this.label3.Text = "Orders delayed:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Sitka Display", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(162, 366);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 29);
+            this.label2.Size = new System.Drawing.Size(183, 33);
             this.label2.TabIndex = 17;
             this.label2.Text = "Orders completed:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Sitka Display", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(491, 262);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 29);
+            this.label1.Size = new System.Drawing.Size(153, 33);
             this.label1.TabIndex = 16;
             this.label1.Text = "Waiter income:";
             // 
             // incomeLabel
             // 
             this.incomeLabel.AutoSize = true;
-            this.incomeLabel.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.incomeLabel.Location = new System.Drawing.Point(197, 262);
+            this.incomeLabel.Font = new System.Drawing.Font("Sitka Display", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.incomeLabel.Location = new System.Drawing.Point(203, 262);
             this.incomeLabel.Name = "incomeLabel";
-            this.incomeLabel.Size = new System.Drawing.Size(128, 29);
+            this.incomeLabel.Size = new System.Drawing.Size(142, 33);
             this.incomeLabel.TabIndex = 15;
             this.incomeLabel.Text = "Income today:";
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.IndianRed;
             this.button2.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.SeaShell;
             this.button2.Location = new System.Drawing.Point(561, 124);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 78);
             this.button2.TabIndex = 14;
             this.button2.Text = "Edit Users";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
             this.button1.Font = new System.Drawing.Font("Sitka Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.SeaShell;
             this.button1.Location = new System.Drawing.Point(228, 124);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 78);
             this.button1.TabIndex = 13;
             this.button1.Text = "Edit Menu";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // welcome
@@ -223,7 +238,7 @@
             this.welcome.Font = new System.Drawing.Font("Sitka Display", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcome.Location = new System.Drawing.Point(328, 16);
             this.welcome.Name = "welcome";
-            this.welcome.Size = new System.Drawing.Size(231, 62);
+            this.welcome.Size = new System.Drawing.Size(232, 62);
             this.welcome.TabIndex = 12;
             this.welcome.Text = "Hello Boss!";
             // 
@@ -299,35 +314,40 @@
             // 
             // backButton2
             // 
+            this.backButton2.BackColor = System.Drawing.Color.SeaShell;
             this.backButton2.Font = new System.Drawing.Font("Sitka Display", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton2.Location = new System.Drawing.Point(790, 423);
+            this.backButton2.Location = new System.Drawing.Point(779, 428);
             this.backButton2.Name = "backButton2";
             this.backButton2.Size = new System.Drawing.Size(97, 43);
             this.backButton2.TabIndex = 9;
             this.backButton2.Text = "Back";
-            this.backButton2.UseVisualStyleBackColor = true;
+            this.backButton2.UseVisualStyleBackColor = false;
             this.backButton2.Click += new System.EventHandler(this.backButton2_Click);
             // 
             // saveUsersButton
             // 
+            this.saveUsersButton.BackColor = System.Drawing.Color.IndianRed;
             this.saveUsersButton.Font = new System.Drawing.Font("Sitka Display", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveUsersButton.ForeColor = System.Drawing.Color.SeaShell;
             this.saveUsersButton.Location = new System.Drawing.Point(779, 93);
             this.saveUsersButton.Name = "saveUsersButton";
             this.saveUsersButton.Size = new System.Drawing.Size(97, 43);
             this.saveUsersButton.TabIndex = 8;
             this.saveUsersButton.Text = "Save";
-            this.saveUsersButton.UseVisualStyleBackColor = true;
+            this.saveUsersButton.UseVisualStyleBackColor = false;
             this.saveUsersButton.Click += new System.EventHandler(this.saveUsersButton_Click_1);
             // 
             // deleteUsersButton
             // 
+            this.deleteUsersButton.BackColor = System.Drawing.Color.IndianRed;
             this.deleteUsersButton.Font = new System.Drawing.Font("Sitka Display", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteUsersButton.ForeColor = System.Drawing.Color.SeaShell;
             this.deleteUsersButton.Location = new System.Drawing.Point(779, 33);
             this.deleteUsersButton.Name = "deleteUsersButton";
             this.deleteUsersButton.Size = new System.Drawing.Size(97, 43);
             this.deleteUsersButton.TabIndex = 7;
             this.deleteUsersButton.Text = "Delete";
-            this.deleteUsersButton.UseVisualStyleBackColor = true;
+            this.deleteUsersButton.UseVisualStyleBackColor = false;
             this.deleteUsersButton.Click += new System.EventHandler(this.deleteUsersButton_Click);
             // 
             // dataGridView2
@@ -340,28 +360,15 @@
             this.dataGridView2.Size = new System.Drawing.Size(745, 408);
             this.dataGridView2.TabIndex = 5;
             // 
-            // wwrestaurantDataSet
-            // 
-            
-            // 
-            // openCalendarButton
-            // 
-            this.openCalendarButton.Location = new System.Drawing.Point(206, 235);
-            this.openCalendarButton.Name = "openCalendarButton";
-            this.openCalendarButton.Size = new System.Drawing.Size(119, 23);
-            this.openCalendarButton.TabIndex = 26;
-            this.openCalendarButton.Text = "Select date";
-            this.openCalendarButton.UseVisualStyleBackColor = true;
-            this.openCalendarButton.Click += new System.EventHandler(this.openCalendarButton_Click);
-            // 
-            // Form1
+            // AdminPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 518);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "AdminPage";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.AdminPage_Load);
             this.tabControl1.ResumeLayout(false);
             this.welcomePage.ResumeLayout(false);
             this.welcomePage.PerformLayout();
@@ -369,7 +376,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.editUsersPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            
             this.ResumeLayout(false);
 
         }

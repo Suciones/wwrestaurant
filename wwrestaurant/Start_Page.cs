@@ -24,14 +24,10 @@ namespace wwrestaurant
         public int selectedTable = -1;
         private OrderForm orderForm;
 
+        private int[] tableSeats = new int[] { 2, 2, 4, 4, 6, 6, 8, 10, 10 };
         public Start_Page()
         {
             InitializeComponent();
-
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.StartPosition = FormStartPosition.CenterScreen;
 
             db = new dbHandler(menu_ds: menu_ds, order_items_ds: order_items_ds, tables_ds: tables_ds);
 
@@ -40,6 +36,16 @@ namespace wwrestaurant
             // Subscribe to the table status changed event
             TableStatusManager.TableStatusChanged += TableStatusManager_TableStatusChanged;
             MenuStatusManager.MenuStatusChanged += MenuStatusManager_MenuStatusChanged;
+
+            //style 
+
+            AppStyle.ApplyFormStyle(this);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            
+            
         }
 
         // Event handler for table status changes
@@ -83,15 +89,21 @@ namespace wwrestaurant
         {
             db.RefreshDataset(db.tables_ds, db.tables_ad, "tables");
             lstTables.Items.Clear();
+
             foreach (DataRow row in db.tables_ds.Tables["tables"].Rows)
             {
                 if (row["status_table"].ToString() == "Free")
-                    lstTables.Items.Add((int)row["table_nr"]);
+                {
+                    int tableNr = (int)row["table_nr"];
+                    int seats = tableSeats[tableNr - 1]; // -1 because table 1 is at index 0
+                    lstTables.Items.Add(Convert.ToInt32(row["table_nr"]));
+                }
             }
         }
 
         private void SetupMenuGrid()
         {
+            
             dgvMenu.Columns.Clear();
             dgvMenu.Columns.Add("Name", "Item");
             dgvMenu.Columns.Add("Price", "Price");
@@ -150,11 +162,23 @@ namespace wwrestaurant
             if (lstTables.SelectedItem != null)
             {
                 selectedTable = (int)lstTables.SelectedItem;
-                currentOrder.Clear();
-                orderForm?.Close();
-                orderForm = new OrderForm(currentOrder, selectedTable, db);
-                MessageBox.Show("Opening OrderForm");
-                orderForm.Show();
+
+                // Show confirmation message
+                DialogResult result = MessageBox.Show(
+                    "Open order for this table?","",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    currentOrder.Clear();
+                    orderForm?.Close();
+                    orderForm = new OrderForm(currentOrder, selectedTable, db);
+                    orderForm.Show();
+                }
+
             }
 
         }

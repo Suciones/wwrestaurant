@@ -16,6 +16,7 @@ namespace wwrestaurant
         public WaiterPage(int userId)
         {
             InitializeComponent();
+
             this.waiterUserId = userId;
 
             dbHandler = new dbHandler(
@@ -23,6 +24,12 @@ namespace wwrestaurant
             );
 
             LoadOrders();
+
+          
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
         }
 
         private void LoadOrders()
@@ -103,7 +110,7 @@ namespace wwrestaurant
 
         private void WaiterPage_Load(object sender, EventArgs e)
         {
-            // Optional: You can call LoadOrders() here instead of constructor
+            // Optional: You can call LoadOrders() here 
         }
 
         private void completeorderbutton_Click(object sender, EventArgs e)
