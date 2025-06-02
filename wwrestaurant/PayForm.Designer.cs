@@ -45,7 +45,11 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.flipTimer = new System.Windows.Forms.Timer(this.components);
             this.btnFlip = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.picCard = new System.Windows.Forms.PictureBox();
+=======
+            this.btnPay2 = new System.Windows.Forms.Button();
+>>>>>>> 36bb33f7296112ad4bd3bc5b5cbfa23441302cf2
             ((System.ComponentModel.ISupportInitialize)(this.picCard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,10 +142,26 @@
             this.btnPay.UseVisualStyleBackColor = true;
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
+<<<<<<< HEAD
             // txtCardNumber
             // 
             this.txtCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCardNumber.Location = new System.Drawing.Point(319, 498);
+=======
+            // picCard
+            // 
+            this.picCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.picCard.Location = new System.Drawing.Point(185, 382);
+            this.picCard.Name = "picCard";
+            this.picCard.Size = new System.Drawing.Size(590, 500);
+            this.picCard.TabIndex = 9;
+            this.picCard.TabStop = false;
+            // 
+            // txtCardNumber
+            // 
+            this.txtCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardNumber.Location = new System.Drawing.Point(214, 440);
+>>>>>>> 36bb33f7296112ad4bd3bc5b5cbfa23441302cf2
             this.txtCardNumber.Name = "txtCardNumber";
             this.txtCardNumber.Size = new System.Drawing.Size(341, 34);
             this.txtCardNumber.TabIndex = 10;
@@ -149,15 +169,24 @@
             // txtCardName
             // 
             this.txtCardName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.txtCardName.Location = new System.Drawing.Point(319, 660);
+=======
+            this.txtCardName.Location = new System.Drawing.Point(214, 561);
+>>>>>>> 36bb33f7296112ad4bd3bc5b5cbfa23441302cf2
             this.txtCardName.Name = "txtCardName";
             this.txtCardName.Size = new System.Drawing.Size(281, 34);
             this.txtCardName.TabIndex = 11;
+            this.txtCardName.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtExpiry
             // 
             this.txtExpiry.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.txtExpiry.Location = new System.Drawing.Point(708, 660);
+=======
+            this.txtExpiry.Location = new System.Drawing.Point(614, 561);
+>>>>>>> 36bb33f7296112ad4bd3bc5b5cbfa23441302cf2
             this.txtExpiry.Name = "txtExpiry";
             this.txtExpiry.Size = new System.Drawing.Size(144, 34);
             this.txtExpiry.TabIndex = 12;
@@ -165,7 +194,11 @@
             // txtCVV
             // 
             this.txtCVV.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.txtCVV.Location = new System.Drawing.Point(763, 515);
+=======
+            this.txtCVV.Location = new System.Drawing.Point(637, 465);
+>>>>>>> 36bb33f7296112ad4bd3bc5b5cbfa23441302cf2
             this.txtCVV.Name = "txtCVV";
             this.txtCVV.Size = new System.Drawing.Size(121, 34);
             this.txtCVV.TabIndex = 13;
@@ -192,6 +225,7 @@
             this.btnFlip.UseVisualStyleBackColor = true;
             this.btnFlip.Click += new System.EventHandler(this.btnFlip_Click);
             // 
+<<<<<<< HEAD
             // picCard
             // 
             this.picCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -200,6 +234,17 @@
             this.picCard.Size = new System.Drawing.Size(642, 363);
             this.picCard.TabIndex = 9;
             this.picCard.TabStop = false;
+=======
+            // btnPay2
+            // 
+            this.btnPay2.Location = new System.Drawing.Point(50, 638);
+            this.btnPay2.Name = "btnPay2";
+            this.btnPay2.Size = new System.Drawing.Size(75, 23);
+            this.btnPay2.TabIndex = 16;
+            this.btnPay2.Text = "Pay";
+            this.btnPay2.UseVisualStyleBackColor = true;
+            this.btnPay2.Click += new System.EventHandler(this.btnPay2_Click);
+>>>>>>> 36bb33f7296112ad4bd3bc5b5cbfa23441302cf2
             // 
             // PayForm
             // 
@@ -207,6 +252,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(943, 776);
+            this.Controls.Add(this.btnPay2);
             this.Controls.Add(this.btnFlip);
             this.Controls.Add(this.txtCVV);
             this.Controls.Add(this.lblStatus);
@@ -251,5 +297,6 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Timer flipTimer;
         private System.Windows.Forms.Button btnFlip;
+        private System.Windows.Forms.Button btnPay2;
     }
 }

@@ -92,6 +92,35 @@ namespace wwrestaurant
             }
         }
 
+        private void txtCardName_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void btnPay2_Click(object sender, EventArgs e) {
+            // Validate fields
+            if(string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
+                string.IsNullOrWhiteSpace(txtCardName.Text) ||
+                string.IsNullOrWhiteSpace(txtExpiry.Text) ||
+                string.IsNullOrWhiteSpace(txtCVV.Text)) {
+                MessageBox.Show("Please complete all card fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            lblStatus.Text = "Payment Successful!";
+            lblStatus.ForeColor = Color.ForestGreen;
+
+            // Close forms after short delay
+            Timer closeTimer = new Timer();
+            closeTimer.Interval = 1000;
+            closeTimer.Tick += (s, ev) => {
+                closeTimer.Stop();
+                this.Close();
+                orderFormReference?.Close();
+            };
+            closeTimer.Start();
+        }
+        
+
         private void btnPay_Click(object sender, EventArgs e)
         {
             // Validate fields

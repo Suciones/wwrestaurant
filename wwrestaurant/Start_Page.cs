@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
+
 
 namespace wwrestaurant
 {
@@ -140,7 +142,12 @@ namespace wwrestaurant
                 try { img = Image.FromFile(System.IO.Path.Combine(Application.StartupPath, picPath)); }
                 catch { img = new Bitmap(1, 1); }
 
-                int rowIndex = dgvMenu.Rows.Add(name, price.ToString("C"), img, 1);
+                int rowIndex = dgvMenu.Rows.Add(
+                    name,
+                    price.ToString("C", CultureInfo.GetCultureInfo("de-DE")), //to sisplay EUR instead of XDR
+                    img,
+                    1
+                );
                 dgvMenu.Rows[rowIndex].Tag = id; // Tag = item_id for tracking
             }
         }
