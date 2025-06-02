@@ -1,4 +1,6 @@
-﻿namespace wwrestaurant {
+﻿using System;
+
+namespace wwrestaurant {
     partial class AdminPage {
         /// <summary>
         /// Required designer variable.
@@ -25,6 +27,7 @@
         private void InitializeComponent() {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.welcomePage = new System.Windows.Forms.TabPage();
+            this.openCalendarButton = new System.Windows.Forms.Button();
             this.dateLabel = new System.Windows.Forms.Label();
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -49,15 +52,14 @@
             this.saveUsersButton = new System.Windows.Forms.Button();
             this.deleteUsersButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            
-            this.openCalendarButton = new System.Windows.Forms.Button();
+            this.refresh_Button = new System.Windows.Forms.Button();
+            this.refresh_Button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.welcomePage.SuspendLayout();
             this.editMenuPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.editUsersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-           
             this.SuspendLayout();
             // 
             // tabControl1
@@ -95,6 +97,16 @@
             this.welcomePage.TabIndex = 0;
             this.welcomePage.Text = "tabPage1";
             this.welcomePage.UseVisualStyleBackColor = true;
+            // 
+            // openCalendarButton
+            // 
+            this.openCalendarButton.Location = new System.Drawing.Point(206, 235);
+            this.openCalendarButton.Name = "openCalendarButton";
+            this.openCalendarButton.Size = new System.Drawing.Size(119, 23);
+            this.openCalendarButton.TabIndex = 26;
+            this.openCalendarButton.Text = "Select date";
+            this.openCalendarButton.UseVisualStyleBackColor = true;
+            this.openCalendarButton.Click += new System.EventHandler(this.openCalendarButton_Click);
             // 
             // dateLabel
             // 
@@ -229,6 +241,7 @@
             // 
             // editMenuPage
             // 
+            this.editMenuPage.Controls.Add(this.refresh_Button);
             this.editMenuPage.Controls.Add(this.backButton1);
             this.editMenuPage.Controls.Add(this.saveMenuButton);
             this.editMenuPage.Controls.Add(this.deleteMenuButton);
@@ -272,6 +285,8 @@
             this.deleteMenuButton.TabIndex = 2;
             this.deleteMenuButton.Text = "Delete";
             this.deleteMenuButton.UseVisualStyleBackColor = true;
+            this.deleteMenuButton.Click += new EventHandler(deleteMenuButton_Click);
+
             // 
             // dataGridView1
             // 
@@ -285,6 +300,7 @@
             // 
             // editUsersPage
             // 
+            this.editUsersPage.Controls.Add(this.refresh_Button2);
             this.editUsersPage.Controls.Add(this.backButton2);
             this.editUsersPage.Controls.Add(this.saveUsersButton);
             this.editUsersPage.Controls.Add(this.deleteUsersButton);
@@ -340,27 +356,35 @@
             this.dataGridView2.Size = new System.Drawing.Size(745, 408);
             this.dataGridView2.TabIndex = 5;
             // 
-            // wwrestaurantDataSet
+            // refresh_Button
             // 
-            
+            this.refresh_Button.Font = new System.Drawing.Font("Sitka Display", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh_Button.Location = new System.Drawing.Point(775, 143);
+            this.refresh_Button.Name = "refresh_Button";
+            this.refresh_Button.Size = new System.Drawing.Size(97, 43);
+            this.refresh_Button.TabIndex = 5;
+            this.refresh_Button.Text = "Refresh";
+            this.refresh_Button.UseVisualStyleBackColor = true;
+            this.refresh_Button.Click += new System.EventHandler(this.refresh_Button_Click);
             // 
-            // openCalendarButton
+            // refresh_Button2
             // 
-            this.openCalendarButton.Location = new System.Drawing.Point(206, 235);
-            this.openCalendarButton.Name = "openCalendarButton";
-            this.openCalendarButton.Size = new System.Drawing.Size(119, 23);
-            this.openCalendarButton.TabIndex = 26;
-            this.openCalendarButton.Text = "Select date";
-            this.openCalendarButton.UseVisualStyleBackColor = true;
-            this.openCalendarButton.Click += new System.EventHandler(this.openCalendarButton_Click);
+            this.refresh_Button2.Font = new System.Drawing.Font("Sitka Display", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh_Button2.Location = new System.Drawing.Point(779, 152);
+            this.refresh_Button2.Name = "refresh_Button2";
+            this.refresh_Button2.Size = new System.Drawing.Size(97, 43);
+            this.refresh_Button2.TabIndex = 10;
+            this.refresh_Button2.Text = "Refresh";
+            this.refresh_Button2.UseVisualStyleBackColor = true;
+            this.refresh_Button2.Click += new System.EventHandler(this.refresh_Button2_Click);
             // 
-            // Form1
+            // AdminPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 518);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "AdminPage";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.welcomePage.ResumeLayout(false);
@@ -369,7 +393,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.editUsersPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            
             this.ResumeLayout(false);
 
         }
@@ -403,6 +426,8 @@
         private System.Windows.Forms.MonthCalendar calendar;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Button openCalendarButton;
+        private System.Windows.Forms.Button refresh_Button;
+        private System.Windows.Forms.Button refresh_Button2;
     }
 }
 

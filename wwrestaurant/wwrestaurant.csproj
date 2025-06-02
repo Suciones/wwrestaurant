@@ -223,6 +223,9 @@
     <Compile Include="WaiterPage.Designer.cs">
       <DependentUpon>WaiterPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminPage.resx">
+      <DependentUpon>AdminPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

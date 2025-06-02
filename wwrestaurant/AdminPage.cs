@@ -21,6 +21,10 @@ namespace wwrestaurant {
 
         public AdminPage() {
             InitializeComponent();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+
+
             menu_ds = new DataSet();
             users_ds = new DataSet();
             handler = new dbHandler(menu_ds: menu_ds, users_ds: users_ds);
@@ -319,9 +323,44 @@ namespace wwrestaurant {
 
         private void saveMenuButton_Click_1(object sender, EventArgs e) {
             try {
+                // Commit any pending edits in the DataGridView
+                dataGridView1.EndEdit();
+
+                // Validate for negative prices and duplicate names before saving
+                var menuTable = menu_ds.Tables["menu"];
+                HashSet<string> names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                foreach(DataRow row in menuTable.Rows) {
+                    // Skip deleted rows
+                    if(row.RowState == DataRowState.Deleted)
+                        continue;
+
+                    // Check for negative price
+                    if(row.Table.Columns.Contains("price")) {
+                        if(row["price"] != DBNull.Value && decimal.TryParse(row["price"].ToString(), out decimal price)) {
+                            if(price < 0) {
+                                MessageBox.Show("Negative prices are not allowed. Please correct the menu item(s) with negative prices.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+
+                    // Check for duplicate names
+                    if(row.Table.Columns.Contains("name")) {
+                        string name = row["name"]?.ToString().Trim();
+                        if(!string.IsNullOrEmpty(name)) {
+                            if(names.Contains(name)) {
+                                MessageBox.Show($"Duplicate menu item name found: '{name}'. Please ensure all menu item names are unique.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            names.Add(name);
+                        }
+                    }
+                }
+
                 // Configure the SqlDataAdapter with the INSERT, UPDATE, and DELETE commands
                 SqlCommandBuilder menuCommandBuilder = new SqlCommandBuilder(handler.menu_ad);
-                
+
                 // Update the database with changes from the DataSet
                 handler.menu_ad.Update(menu_ds, "menu");
                 MessageBox.Show("Menu changes saved successfully!");
@@ -331,6 +370,9 @@ namespace wwrestaurant {
                 MessageBox.Show("Error saving changes: " + ex.Message);
             }
         }
+
+
+
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) {
             UpdateWaiterIncome();
@@ -345,6 +387,35 @@ namespace wwrestaurant {
             }
         }
 
+        private void refresh_Button_Click(object sender, EventArgs e) {
+            try {
+                // Re-fill the menu dataset from the database
+                menu_ds.Clear();
+                handler.menu_ad.Fill(menu_ds, "menu");
+
+                // Rebind the DataGridView to ensure it shows the latest data
+                dataGridView1.DataSource = menu_ds.Tables["menu"];
+                MessageBox.Show("Menu refreshed!");
+            }
+            catch(Exception ex) {
+                MessageBox.Show("Error refreshing menu: " + ex.Message);
+            }
+        }
+
+        private void refresh_Button2_Click(object sender, EventArgs e) {
+            try {
+                // Re-fill the users dataset from the database
+                users_ds.Clear();
+                handler.users_ad.Fill(users_ds, "users");
+
+                // Rebind the DataGridView to ensure it shows the latest data
+                dataGridView2.DataSource = users_ds.Tables["users"];
+                MessageBox.Show("Users refreshed!");
+            }
+            catch(Exception ex) {
+                MessageBox.Show("Error refreshing users: " + ex.Message);
+            }
+        }
 
     }
 }
